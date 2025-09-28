@@ -114,16 +114,27 @@
                     </div>
                     <!-- Placeholder figures for scroll testing -->
                     <script>
-                        // Toggle to show/hide placeholder figures
-                        var showFigures = true; // Set to false to hide figures
+                        // Set this to false to always show figures and hide the toggle
+                        var showToggleForFigures = false; // <-- CHANGE THIS TO false TO DISABLE TOGGLE
+                        var showFigures = true;
                         function toggleFigures() {
                             showFigures = !showFigures;
                             document.querySelectorAll('.placeholder-figure').forEach(function(fig) {
                                 fig.style.display = showFigures ? '' : 'none';
                             });
                         }
+                        window.addEventListener('DOMContentLoaded', function() {
+                            if (!showToggleForFigures) {
+                                // Always show figures, hide toggle
+                                document.querySelectorAll('.placeholder-figure').forEach(function(fig) {
+                                    fig.style.display = '';
+                                });
+                                var toggleDiv = document.getElementById('figures-toggle-div');
+                                if (toggleDiv) toggleDiv.style.display = 'none';
+                            }
+                        });
                     </script>
-                    <div style="position:fixed;top:0;right:0;z-index:9999;background:#fff;padding:4px 12px;border-radius:0 0 0 8px;box-shadow:0 2px 8px rgba(0,0,0,0.08);">
+                    <div id="figures-toggle-div" style="position:fixed;top:0;right:0;z-index:9999;background:#fff;padding:4px 12px;border-radius:0 0 0 8px;box-shadow:0 2px 8px rgba(0,0,0,0.08);">
                         <label style="font-size:0.95em;cursor:pointer;">
                             <input type="checkbox" checked onclick="toggleFigures()"> Show placeholder figures
                         </label>
