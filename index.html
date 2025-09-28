@@ -65,25 +65,7 @@
         <link href="css/stylesheet.css" rel="stylesheet" />
     </head>
     <body style="background:transparent;">
-        <!-- Banner and video load first -->
-        <div id="banner-video-container" style="position:relative; min-height:280px; max-height:400px; overflow:hidden; background:transparent;">
-            <video autoplay loop muted playsinline style="width:100vw; height:1000px; max-width:100%; object-fit:cover; object-position:center 54px; position:absolute; left:50%; top:-400px; transform:translateX(-50%); z-index:0; background:transparent;">
-                <source src="assets/video/banner-river.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-        </div>
-        <!-- Title container loads next -->
-        <div id="title-container" class="container position-relative px-4 px-lg-5" style="position:relative; z-index:1; height:280px; display:flex; align-items:flex-start; justify-content:center; background:transparent;">
-            <div class="row gx-4 gx-lg-5 justify-content-center w-100">
-                <div class="col-md-10 col-lg-8 col-xl-7 d-flex flex-column align-items-center" style="width:100%;">
-                    <div class="site-heading" style="color:#fff; text-shadow:0 2px 8px rgba(0,0,0,0.5); margin-top:-80px; text-align:center;">
-                        <h1 style="white-space:nowrap; text-align:center;">Wei Word Thoughts</h1>
-                        <span class="subheading" style="white-space:nowrap; text-align:center;">Random collection of my thoughts poorly organized into blog format</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Navigation loads after title -->
+        <!-- Minimal Navigation-->
         <nav class="navbar navbar-light" id="mainNav">
             <div class="container px-4 px-lg-5 d-flex align-items-center justify-content-between">
                 <a class="navbar-brand" href="index.html">Blogs</a>
@@ -94,6 +76,26 @@
                 </div>
             </div>
         </nav>
+        <!-- Minimal Header-->
+        <header class="masthead" style="position:relative; min-height:280px; max-height:400px; overflow:hidden; background:transparent;">
+            <video autoplay loop muted playsinline style="width:100vw; height:1000px; max-width:100%; object-fit:cover; object-position:center 54px; position:absolute; left:50%; top:-400px; transform:translateX(-50%); z-index:0; background:transparent;">
+                <source src="assets/video/banner-river.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div class="container position-relative px-4 px-lg-5" style="position:relative; z-index:1; height:280px; display:flex; align-items:flex-start; justify-content:center; background:transparent;">
+                <div class="row gx-4 gx-lg-5 justify-content-center w-100">
+                    <div class="col-md-10 col-lg-8 col-xl-7 d-flex flex-column align-items-center" style="width:100%;">
+                        <div class="site-heading" style="color:#fff; text-shadow:0 2px 8px rgba(0,0,0,0.5); margin-top:-80px; text-align:center;">
+                            <h1 style="white-space:nowrap; text-align:center;">Wei Word Thoughts</h1>
+                            <!--
+                            <span class="subheading" style="white-space:nowrap; text-align:center;">Random collection of my (<a href="https://mianwei.ca" target="_blank" style="color:#fff; text-decoration:underline;">Mian Wei</a>) thoughts poorly organized into blog format</span>
+                        -->
+                            <span class="subheading" style="white-space:nowrap; text-align:center;">Random collection of my thoughts poorly organized into blog format</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
     <!-- Main Content with Sidebar -->
     <div class="container px-4 px-lg-5" style="background:transparent; margin-top:-32px; box-shadow:none;">
             <div class="row gx-4 gx-lg-5 justify-content-center" style="background:transparent; margin-top:0;">
