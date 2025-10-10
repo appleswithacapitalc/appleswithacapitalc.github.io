@@ -124,3 +124,39 @@ video {
     padding-right:0;
 }
 
+.hover-word {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  width: fit-content;
+}
+
+/* default text */
+.hover-word::before {
+  content: "colleague";
+  transition: opacity 0.3s;
+}
+
+/* hover text */
+.hover-word::after {
+  content: "friend";
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+/* swap on hover */
+.hover-word:hover::before {
+  opacity: 0;
+}
+.hover-word:hover::after {
+  opacity: 1;
+}
+
+.justified {
+  text-align: justify;        /* flush left and right */
+  text-justify: inter-word;   /* better spacing */
+  hyphens: auto;  
+}
