@@ -1,14 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="utf-8" />
+  <title>Redirecting…</title>
+  <!-- Fast meta refresh as a fallback -->
   <meta http-equiv="refresh" content="0; url=/mera">
+  <!-- Help search engines treat /mera as canonical -->
+  <link rel="canonical" href="/mera">
   <script>
-    window.location.replace("/mera");
+    (function () {
+      // Only redirect from the root path
+      if (location.pathname === "/" || location.pathname === "/index.html") {
+        // Use replace() so / stays out of browser history
+        window.location.replace("/mera");
+      }
+    })();
   </script>
-  <title>Redirecting...</title>
 </head>
 <body>
-  <p>Redirecting to <a href="/mera/">/mera/</a>...</p>
+  <p>Redirecting to <a href="/mera">/mera</a>…</p>
+  <noscript>
+    <meta http-equiv="refresh" content="0; url=/mera">
+  </noscript>
 </body>
 </html>
 
