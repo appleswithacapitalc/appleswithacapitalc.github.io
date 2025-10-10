@@ -1,0 +1,126 @@
+:root {
+  --jumbotron-padding-y: 4rem;
+}
+
+.jumbotron {
+  padding-top: calc(var(--jumbotron-padding-y) * 2);
+  padding-bottom: var(--jumbotron-padding-y);
+  margin-bottom: 0;
+  background-color: #fff;
+}
+
+@media (min-width: 576px) {.image-container{
+    height: 303px;
+    width: 100%;
+    object-fit: contain ;
+    
+}
+
+}
+
+@media (min-width: 768px) {
+  .jumbotron {
+    padding-top: calc(var(--jumbotron-padding-y) * 1.5);
+    padding-bottom: calc(var(--jumbotron-padding-y) * 0.75);
+
+  }
+  .image-container{
+      height: 185px;
+      width: 100%;
+      object-fit: contain ;
+      
+  }
+  
+}
+
+
+@media (min-width: 992px) {
+    .image-container{
+    height: 252px;
+    width: 100%;
+    object-fit: contain ;
+}
+    
+}
+
+@media (min-width: 1200px) {
+    .image-container{
+        height: 303px;
+        width: 100%;
+        object-fit: contain ;
+        
+    }
+}
+
+.jumbotron p:last-child {
+  margin-bottom: 0;
+}
+
+.jumbotron-heading {
+  font-weight: 300;
+}
+
+.jumbotron .container {
+  max-width: 40rem;
+}
+
+footer {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+footer p {
+  margin-bottom: 0rem;
+}
+
+body {
+    padding-bottom: 0px;
+}
+
+h2::before {
+    display: block;
+    content: " ";
+    margin-top: -60px;
+    height: 60px;
+    visibility: hidden;
+}
+
+.navbar .navbar-brand,
+.navbar .navbar-text {
+    color: white;
+    font-size: 1.5rem;
+     margin-bottom: 0px;
+}
+
+.navbar-nav .nav-item .nav-link {
+    color: #8bb0fb;
+    font-size: 1rem;
+}
+
+.navbar-nav .nav-item.active .nav-link,
+.navbar-nav .nav-item:hover .nav-link {
+    color: white;
+    font-size: 1rem;
+}
+
+.object-fit_cover { object-fit: cover }
+
+p {
+   margin-bottom: 1rem;
+}
+
+.row {
+    margin-bottom: 1rem;
+}
+
+video {
+    background-color: #2B2B2B;
+    object-fit: contain ;
+}
+
+
+.col-no-padding {
+    padding-left:0;
+    padding-right:0;
+}
+

@@ -1,0 +1,67 @@
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+ .footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  
+font-size: 1rem;  background-color: #fff;
+  
+}
+
+
+
+/* Custom page CSS
+-------------------------------------------------- */
+/* Not required for template or sticky footer method. */
+
+body > .container {
+  padding: 60px 0px 0;
+}
+
+.footer > .container {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+code {
+  font-size: 80%;
+}
+
+.navbar .navbar-brand,
+.navbar .navbar-text {
+    color: white;
+    font-size: 1.5rem;
+    margin-bottom: 0px;
+}
+
+.navbar-nav .nav-item .nav-link {
+    color: #8bb0fb;
+    font-size: 1rem;
+}
+
+.navbar-nav .nav-item.active .nav-link,
+.navbar-nav .nav-item:hover .nav-link {
+    color: white;
+    font-size: 1rem;
+}
+
+h2::before {
+    display: block;
+    content: " ";
+    margin-top: -48px;
+    height: 60px;
+    visibility: hidden;
+}
+
