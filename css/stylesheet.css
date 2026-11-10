@@ -236,6 +236,11 @@ hr { opacity: 0.1; }
     height: calc(var(--k) * 1cap);
     vertical-align: calc((1 - var(--k)) * 0.5cap);
 }
+/* Gap before the sun = the gap between Bio, CV and Pubs (each link's side padding, twice) */
+@media (min-width: 768px) {
+    .theme-combo { margin-left: var(--bs-navbar-nav-link-padding-x) !important; }
+}
+.theme-combo > :first-child { margin-left: 0; }
 .theme-combo .sun-link     { --k: var(--sun); color: #8bb0fb; transition: opacity .25s, color .2s; }
 .theme-combo .theme-switch { --k: var(--switch); padding: 0; min-height: 0; }
 .theme-combo .moon-btn     { --k: var(--moon); color: #8bb0fb; background: none; border: 0; padding: 0;
@@ -249,14 +254,20 @@ hr { opacity: 0.1; }
 [data-bs-theme="dark"] .theme-combo .sun-link { opacity: .4; }
 :root:not([data-bs-theme="dark"]) .theme-combo .moon-btn { opacity: .4; }
 
-/* The switch itself, coloured for the navy bar */
+/* The switch itself, coloured for the navy bar.
+   Its look follows the page's theme (set in <head> before anything draws), not the
+   checkbox state, so it appears in the right position on every page without sliding. */
 .theme-combo .form-check-input {
     display: block; float: none; margin: 0; font-size: inherit; cursor: pointer;
     height: 100%; width: calc(var(--switch) * 1.85cap);
+}
+:root:not([data-bs-theme="dark"]) .theme-combo .form-check-input {
+    background-position: left center;
     background-color: transparent; border-color: #8bb0fb;
     --bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%238bb0fb'/%3e%3c/svg%3e");
 }
-.theme-combo .form-check-input:checked {
+[data-bs-theme="dark"] .theme-combo .form-check-input {
+    background-position: right center;
     background-color: #8bb0fb; border-color: #8bb0fb;
     --bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23000444'/%3e%3c/svg%3e");
 }
@@ -267,4 +278,25 @@ hr { opacity: 0.1; }
 @supports not (height: 1cap) {
     .theme-combo > * { height: calc(var(--k) * 0.73em); vertical-align: calc((1 - var(--k)) * 0.365em); }
     .theme-combo .form-check-input { width: calc(var(--switch) * 1.35em); }
+}
+
+/* "Pubs" in the navbar: hovering the b turns it into an n and links to the secret Puns page
+-------------------------------------------------- */
+.pubs-link a { color: inherit; text-decoration: none; }
+/* Stack b and n in the same spot so the word doesn't shift when they swap */
+.pun-letter { display: inline-grid; }
+.pun-letter > span { grid-area: 1 / 1; text-align: center; }
+.pun-letter .pun-n { visibility: hidden; }
+.pun-letter:hover .pun-b { visibility: hidden; }
+.pun-letter:hover .pun-n { visibility: visible; }
+
+/* Puns page */
+.pun-list li { margin-bottom: 0.75rem; }
+.justified { text-align: justify; text-justify: inter-word; hyphens: auto; }
+
+/* Carousels (Pubs, Treats, Puns): keep white arrows and dots in dark mode.
+   Bootstrap turns them black in dark mode, which disappears on photos and the navy pun panel. */
+[data-bs-theme="dark"] .carousel {
+    --bs-carousel-control-icon-filter: none;
+    --bs-carousel-indicator-active-bg: #fff;
 }
