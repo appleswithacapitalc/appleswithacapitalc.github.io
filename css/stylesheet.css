@@ -280,22 +280,10 @@ hr { opacity: 0.1; }
     .theme-combo .form-check-input { width: calc(var(--switch) * 1.35em); }
 }
 
-/* "Pubs" in the navbar: hovering the b turns it into an n and links to the secret Puns page
--------------------------------------------------- */
-.pubs-link a { color: inherit; text-decoration: none; }
-/* Stack b and n in the same spot so the word doesn't shift when they swap */
-.pun-letter { display: inline-grid; }
-.pun-letter > span { grid-area: 1 / 1; text-align: center; }
-.pun-letter .pun-n { visibility: hidden; }
-.pun-letter:hover .pun-b { visibility: hidden; }
-.pun-letter:hover .pun-n { visibility: visible; }
-
-/* Puns page */
-.pun-list li { margin-bottom: 0.75rem; }
 .justified { text-align: justify; text-justify: inter-word; hyphens: auto; }
 
-/* Carousels (Pubs, Treats, Puns): keep white arrows and dots in dark mode.
-   Bootstrap turns them black in dark mode, which disappears on photos and the navy pun panel. */
+/* Carousels (Pubs, Treats): keep white arrows and dots in dark mode.
+   Bootstrap turns them black in dark mode, which disappears on photos. */
 [data-bs-theme="dark"] .carousel {
     --bs-carousel-control-icon-filter: none;
     --bs-carousel-indicator-active-bg: #fff;

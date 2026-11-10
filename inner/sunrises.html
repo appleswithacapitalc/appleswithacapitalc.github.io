@@ -62,6 +62,13 @@
       #sunrise-dates .list-group-item:not(.active) { background-color: var(--bs-body-bg); }
       /* Same text style as the bio on the homepage */
       .justified { text-align: justify; text-justify: inter-word; hyphens: auto; }
+      /* Photos and videos in a post: shown side by side at a modest size, centred.
+         To make them bigger or smaller, change --media-height. Click a photo to see it full size. */
+      .sunrise-media { --media-height: min(55vh, 380px);
+                       display: flex; flex-wrap: wrap; justify-content: center; gap: .5rem; padding: 1rem 1rem 0; }
+      .sunrise-media img, .sunrise-media video { display: block; max-width: 100%; max-height: var(--media-height);
+                       width: auto; height: auto; border-radius: .375rem; }
+      .sunrise-media video { height: var(--media-height); background: #000; }
     </style>
   </head>
 
@@ -90,7 +97,7 @@
                     </li>
                     
                     <li class="nav-item">
-                        <span class="nav-link pubs-link"><a class="pubs-part" href="pubs.html" aria-label="Pubs">Pu</a><a class="pun-letter" href="puns.html" tabindex="-1" aria-hidden="true"><span class="pun-b">b</span><span class="pun-n">n</span></a><a class="pubs-part" href="pubs.html" tabindex="-1" aria-hidden="true">s</a></span>
+                        <a class="nav-link" href="pubs.html">Pubs</a>
                     </li>
 
                 </ul>
@@ -207,17 +214,31 @@
             sidebar += '<a class="list-group-item list-group-item-action" href="#' + id + '">' +
                        MONTHS[e.mo - 1].slice(0, 3) + ' ' + e.d + '</a>';
 
-            // Post card. "photo" can be one filename or a list of filenames.
-            var photos = [].concat(e.photo || []).filter(Boolean);
+            // Post card. "photo" and "video" can each be one filename or a list of filenames.
+            // Photos: use the small .web.jpg copy made by compress_media.sh (e.g. 2026-10-20.jpeg -> 2026-10-20.web.jpg)
+            var photos = [].concat(e.photo || []).filter(Boolean).map(function (f) {
+              f = String(f);
+              return /\.web\.jpg$/i.test(f) || /^https?:/i.test(f) ? f : f.replace(/\.[^.\/]+$/, '') + '.web.jpg';
+            });
+            // Videos: a .MOV name is switched to its compressed .mp4 (made by compress_media.sh)
+            var videos = [].concat(e.video || []).filter(Boolean).map(function (f) {
+              return String(f).replace(/\.(mov|m4v)$/i, '.mp4');
+            });
             var dateLine = MONTHS[e.mo - 1] + ' ' + e.d + ', ' + e.y + (e.location ? ' &middot; ' + esc(e.location) : '');
             // "text" may contain simple HTML (e.g. links). A blank line starts a new paragraph.
             var paras = String(e.text || '').split(/\n\s*\n/).filter(function (t) { return t.trim(); });
 
+            var media = photos.map(function (f) {
+                return '<a href="' + PHOTO_DIR + esc(f) + '" target="_blank" rel="noopener">' +
+                       '<img loading="lazy" src="' + PHOTO_DIR + esc(f) +
+                       '" alt="Sunrise on ' + MONTHS[e.mo - 1] + ' ' + e.d + ', ' + e.y + '"></a>';
+              }).concat(videos.map(function (f) {
+                return '<video controls muted playsinline preload="metadata" src="' +
+                       PHOTO_DIR + esc(f) + '#t=0.1" aria-label="Sunrise video, ' + MONTHS[e.mo - 1] + ' ' + e.d + ', ' + e.y + '"></video>';
+              })).join('');
+
             posts += '<div class="card sunrise-post" id="' + id + '">' +
-              photos.map(function (f) {
-                return '<img class="card-img-top" loading="lazy" src="' + PHOTO_DIR + esc(f) +
-                       '" alt="Sunrise on ' + MONTHS[e.mo - 1] + ' ' + e.d + ', ' + e.y + '">';
-              }).join('') +
+              (media ? '<div class="sunrise-media">' + media + '</div>' : '') +
               '<div class="card-body">' +
                 (e.title ? '<h4 class="card-title">' + esc(e.title) + '</h4>' : '') +
                 '<p class="date">' + dateLine + '</p>' +

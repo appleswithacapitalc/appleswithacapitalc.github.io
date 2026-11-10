@@ -1,0 +1,10 @@
+# Original phone videos are too big for the site; compress_media.sh makes .mp4 copies to commit instead
+*.MOV
+*.mov
+# Original sunrise photos are big and can contain GPS location; compress_media.sh makes .web.jpg copies to commit
+*.heic
+*.heif
+files/sunrises/*/**/*.jpg
+files/sunrises/*/**/*.jpeg
+files/sunrises/*/**/*.png
+!files/sunrises/**/*.web.jpg

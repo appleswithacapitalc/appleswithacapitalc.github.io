@@ -21,6 +21,34 @@ The Sunrises page (`inner/sunrises.html`) builds itself from `sunrises.js` in th
 - `photo` can be a list for several photos: `["a.jpg", "b.jpg"]`
 - In `text`, `\n\n` starts a new paragraph, and simple HTML works, e.g. `<a href="...">link</a>`.
 
+## Photos & videos
+
+Put the originals (`.jpeg`, `.HEIC`, `.png`, `.MOV`) in the year/month folder, then in Terminal:
+
+```
+cd ~/"Dropbox (Personal)/Website/personal"
+files/sunrises/compress_media.sh
+```
+
+- Videos get a web-friendly `.mp4` next to them, aiming for under 5 MB (starts at CRF 23 and
+  steps up only if needed).
+- Photos get a `.web.jpg` next to them: at most 2048 px, usually 0.2-0.9 MB, with location
+  (GPS) data removed.
+- Originals are untouched and git ignores them, so only the small copies go online.
+- Files already done are skipped, so just run it whenever you add new ones. `-f` redoes
+  everything; you can also pass one folder or file. Settings are at the top of the script.
+
+In an entry, use the original file name and the page picks the small copy automatically:
+
+```
+"photo": "2026/10-Oct/2026-10-20.jpeg",
+"video": "2026/11-Nov/2026-11-03.MOV",
+```
+
+Either can be a list, e.g. `"photo": ["a.jpeg", "b.HEIC"]`. Photos and videos show side by
+side above the text; click a photo to open it full size. To change their size, edit
+`--media-height` in `inner/sunrises.html`.
+
 ## Gotchas
 
 - Put a comma after each entry's `}` (a comma after the last one is fine too).
