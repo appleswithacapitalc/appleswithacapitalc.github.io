@@ -1,192 +1,287 @@
 @font-face {
     font-family: 'Ageo';
-    src: url('assets/font/Ageo/Ageo-Thin.eot');
+    src: url('../assets/font/Ageo/Ageo-Thin.eot');
     src: local('Ageo Thin'), local('Ageo-Thin'),
-        url('assets/font/Ageo/Ageo-Thin.eot?#iefix') format('embedded-opentype'),
-        url('assets/font/Ageo/Ageo-Thin.woff2') format('woff2'),
-        url('assets/font/Ageo/Ageo-Thin.woff') format('woff'),
-        url('assets/font/Ageo/Ageo-Thin.ttf') format('truetype');
+        url('../assets/font/Ageo/Ageo-Thin.eot?#iefix') format('embedded-opentype'),
+        url('../assets/font/Ageo/Ageo-Thin.woff2') format('woff2'),
+        url('../assets/font/Ageo/Ageo-Thin.woff') format('woff'),
+        url('../assets/font/Ageo/Ageo-Thin.ttf') format('truetype');
     font-weight: 100;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Ageo';
-    src: url('assets/font/Ageo/Ageo-SemiBold.eot');
+    src: url('../assets/font/Ageo/Ageo-SemiBold.eot');
     src: local('Ageo SemiBold'), local('Ageo-SemiBold'),
-        url('assets/font/Ageo/Ageo-SemiBold.eot?#iefix') format('embedded-opentype'),
-        url('assets/font/Ageo/Ageo-SemiBold.woff2') format('woff2'),
-        url('assets/font/Ageo/Ageo-SemiBold.woff') format('woff'),
-        url('assets/font/Ageo/Ageo-SemiBold.ttf') format('truetype');
+        url('../assets/font/Ageo/Ageo-SemiBold.eot?#iefix') format('embedded-opentype'),
+        url('../assets/font/Ageo/Ageo-SemiBold.woff2') format('woff2'),
+        url('../assets/font/Ageo/Ageo-SemiBold.woff') format('woff'),
+        url('../assets/font/Ageo/Ageo-SemiBold.ttf') format('truetype');
     font-weight: 600;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Ageo';
-    src: url('assets/font/Ageo/Ageo-SemiBoldItalic.eot');
+    src: url('../assets/font/Ageo/Ageo-SemiBoldItalic.eot');
     src: local('Ageo SemiBold Italic'), local('Ageo-SemiBoldItalic'),
-        url('assets/font/Ageo/Ageo-SemiBoldItalic.eot?#iefix') format('embedded-opentype'),
-        url('assets/font/Ageo/Ageo-SemiBoldItalic.woff2') format('woff2'),
-        url('assets/font/Ageo/Ageo-SemiBoldItalic.woff') format('woff'),
-        url('assets/font/Ageo/Ageo-SemiBoldItalic.ttf') format('truetype');
+        url('../assets/font/Ageo/Ageo-SemiBoldItalic.eot?#iefix') format('embedded-opentype'),
+        url('../assets/font/Ageo/Ageo-SemiBoldItalic.woff2') format('woff2'),
+        url('../assets/font/Ageo/Ageo-SemiBoldItalic.woff') format('woff'),
+        url('../assets/font/Ageo/Ageo-SemiBoldItalic.ttf') format('truetype');
     font-weight: 600;
     font-style: italic;
 }
 
 @font-face {
     font-family: 'Ageo';
-    src: url('assets/font/Ageo/Ageo-Regular.eot');
+    src: url('../assets/font/Ageo/Ageo-Regular.eot');
     src: local('Ageo Regular'), local('Ageo-Regular'),
-        url('assets/font/Ageo/Ageo-Regular.eot?#iefix') format('embedded-opentype'),
-        url('assets/font/Ageo/Ageo-Regular.woff2') format('woff2'),
-        url('assets/font/Ageo/Ageo-Regular.woff') format('woff'),
-        url('assets/font/Ageo/Ageo-Regular.ttf') format('truetype');
+        url('../assets/font/Ageo/Ageo-Regular.eot?#iefix') format('embedded-opentype'),
+        url('../assets/font/Ageo/Ageo-Regular.woff2') format('woff2'),
+        url('../assets/font/Ageo/Ageo-Regular.woff') format('woff'),
+        url('../assets/font/Ageo/Ageo-Regular.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Ageo';
-    src: url('assets/font/Ageo/Ageo-LightItalic.eot');
+    src: url('../assets/font/Ageo/Ageo-LightItalic.eot');
     src: local('Ageo Light Italic'), local('Ageo-LightItalic'),
-        url('assets/font/Ageo/Ageo-LightItalic.eot?#iefix') format('embedded-opentype'),
-        url('assets/font/Ageo/Ageo-LightItalic.woff2') format('woff2'),
-        url('assets/font/Ageo/Ageo-LightItalic.woff') format('woff'),
-        url('assets/font/Ageo/Ageo-LightItalic.ttf') format('truetype');
+        url('../assets/font/Ageo/Ageo-LightItalic.eot?#iefix') format('embedded-opentype'),
+        url('../assets/font/Ageo/Ageo-LightItalic.woff2') format('woff2'),
+        url('../assets/font/Ageo/Ageo-LightItalic.woff') format('woff'),
+        url('../assets/font/Ageo/Ageo-LightItalic.ttf') format('truetype');
     font-weight: 300;
     font-style: italic;
 }
 
 @font-face {
     font-family: 'Ageo';
-    src: url('assets/font/Ageo/Ageo-MediumItalic.eot');
+    src: url('../assets/font/Ageo/Ageo-MediumItalic.eot');
     src: local('Ageo Medium Italic'), local('Ageo-MediumItalic'),
-        url('assets/font/Ageo/Ageo-MediumItalic.eot?#iefix') format('embedded-opentype'),
-        url('assets/font/Ageo/Ageo-MediumItalic.woff2') format('woff2'),
-        url('assets/font/Ageo/Ageo-MediumItalic.woff') format('woff'),
-        url('assets/font/Ageo/Ageo-MediumItalic.ttf') format('truetype');
+        url('../assets/font/Ageo/Ageo-MediumItalic.eot?#iefix') format('embedded-opentype'),
+        url('../assets/font/Ageo/Ageo-MediumItalic.woff2') format('woff2'),
+        url('../assets/font/Ageo/Ageo-MediumItalic.woff') format('woff'),
+        url('../assets/font/Ageo/Ageo-MediumItalic.ttf') format('truetype');
     font-weight: 500;
     font-style: italic;
 }
 
 @font-face {
     font-family: 'Ageo';
-    src: url('assets/font/Ageo/Ageo-Bold.eot');
+    src: url('../assets/font/Ageo/Ageo-Bold.eot');
     src: local('Ageo Bold'), local('Ageo-Bold'),
-        url('assets/font/Ageo/Ageo-Bold.eot?#iefix') format('embedded-opentype'),
-        url('assets/font/Ageo/Ageo-Bold.woff2') format('woff2'),
-        url('assets/font/Ageo/Ageo-Bold.woff') format('woff'),
-        url('assets/font/Ageo/Ageo-Bold.ttf') format('truetype');
+        url('../assets/font/Ageo/Ageo-Bold.eot?#iefix') format('embedded-opentype'),
+        url('../assets/font/Ageo/Ageo-Bold.woff2') format('woff2'),
+        url('../assets/font/Ageo/Ageo-Bold.woff') format('woff'),
+        url('../assets/font/Ageo/Ageo-Bold.ttf') format('truetype');
     font-weight: bold;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Ageo';
-    src: url('assets/font/Ageo/Ageo-Medium.eot');
+    src: url('../assets/font/Ageo/Ageo-Medium.eot');
     src: local('Ageo Medium'), local('Ageo-Medium'),
-        url('assets/font/Ageo/Ageo-Medium.eot?#iefix') format('embedded-opentype'),
-        url('assets/font/Ageo/Ageo-Medium.woff2') format('woff2'),
-        url('assets/font/Ageo/Ageo-Medium.woff') format('woff'),
-        url('assets/font/Ageo/Ageo-Medium.ttf') format('truetype');
+        url('../assets/font/Ageo/Ageo-Medium.eot?#iefix') format('embedded-opentype'),
+        url('../assets/font/Ageo/Ageo-Medium.woff2') format('woff2'),
+        url('../assets/font/Ageo/Ageo-Medium.woff') format('woff'),
+        url('../assets/font/Ageo/Ageo-Medium.ttf') format('truetype');
     font-weight: 500;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Ageo';
-    src: url('assets/font/Ageo/Ageo-ExtraBold.eot');
+    src: url('../assets/font/Ageo/Ageo-ExtraBold.eot');
     src: local('Ageo ExtraBold'), local('Ageo-ExtraBold'),
-        url('assets/font/Ageo/Ageo-ExtraBold.eot?#iefix') format('embedded-opentype'),
-        url('assets/font/Ageo/Ageo-ExtraBold.woff2') format('woff2'),
-        url('assets/font/Ageo/Ageo-ExtraBold.woff') format('woff'),
-        url('assets/font/Ageo/Ageo-ExtraBold.ttf') format('truetype');
+        url('../assets/font/Ageo/Ageo-ExtraBold.eot?#iefix') format('embedded-opentype'),
+        url('../assets/font/Ageo/Ageo-ExtraBold.woff2') format('woff2'),
+        url('../assets/font/Ageo/Ageo-ExtraBold.woff') format('woff'),
+        url('../assets/font/Ageo/Ageo-ExtraBold.ttf') format('truetype');
     font-weight: 800;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Ageo';
-    src: url('assets/font/Ageo/Ageo-HeavyItalic.eot');
+    src: url('../assets/font/Ageo/Ageo-HeavyItalic.eot');
     src: local('Ageo Heavy Italic'), local('Ageo-HeavyItalic'),
-        url('assets/font/Ageo/Ageo-HeavyItalic.eot?#iefix') format('embedded-opentype'),
-        url('assets/font/Ageo/Ageo-HeavyItalic.woff2') format('woff2'),
-        url('assets/font/Ageo/Ageo-HeavyItalic.woff') format('woff'),
-        url('assets/font/Ageo/Ageo-HeavyItalic.ttf') format('truetype');
+        url('../assets/font/Ageo/Ageo-HeavyItalic.eot?#iefix') format('embedded-opentype'),
+        url('../assets/font/Ageo/Ageo-HeavyItalic.woff2') format('woff2'),
+        url('../assets/font/Ageo/Ageo-HeavyItalic.woff') format('woff'),
+        url('../assets/font/Ageo/Ageo-HeavyItalic.ttf') format('truetype');
     font-weight: 900;
     font-style: italic;
 }
 
 @font-face {
     font-family: 'Ageo';
-    src: url('assets/font/Ageo/Ageo-ExtraBoldItalic.eot');
+    src: url('../assets/font/Ageo/Ageo-ExtraBoldItalic.eot');
     src: local('Ageo ExtraBold Italic'), local('Ageo-ExtraBoldItalic'),
-        url('assets/font/Ageo/Ageo-ExtraBoldItalic.eot?#iefix') format('embedded-opentype'),
-        url('assets/font/Ageo/Ageo-ExtraBoldItalic.woff2') format('woff2'),
-        url('assets/font/Ageo/Ageo-ExtraBoldItalic.woff') format('woff'),
-        url('assets/font/Ageo/Ageo-ExtraBoldItalic.ttf') format('truetype');
+        url('../assets/font/Ageo/Ageo-ExtraBoldItalic.eot?#iefix') format('embedded-opentype'),
+        url('../assets/font/Ageo/Ageo-ExtraBoldItalic.woff2') format('woff2'),
+        url('../assets/font/Ageo/Ageo-ExtraBoldItalic.woff') format('woff'),
+        url('../assets/font/Ageo/Ageo-ExtraBoldItalic.ttf') format('truetype');
     font-weight: 800;
     font-style: italic;
 }
 
 @font-face {
     font-family: 'Ageo';
-    src: url('assets/font/Ageo/Ageo-RegularItalic.eot');
+    src: url('../assets/font/Ageo/Ageo-RegularItalic.eot');
     src: local('Ageo Regular Italic'), local('Ageo-RegularItalic'),
-        url('assets/font/Ageo/Ageo-RegularItalic.eot?#iefix') format('embedded-opentype'),
-        url('assets/font/Ageo/Ageo-RegularItalic.woff2') format('woff2'),
-        url('assets/font/Ageo/Ageo-RegularItalic.woff') format('woff'),
-        url('assets/font/Ageo/Ageo-RegularItalic.ttf') format('truetype');
+        url('../assets/font/Ageo/Ageo-RegularItalic.eot?#iefix') format('embedded-opentype'),
+        url('../assets/font/Ageo/Ageo-RegularItalic.woff2') format('woff2'),
+        url('../assets/font/Ageo/Ageo-RegularItalic.woff') format('woff'),
+        url('../assets/font/Ageo/Ageo-RegularItalic.ttf') format('truetype');
     font-weight: normal;
     font-style: italic;
 }
 
 @font-face {
     font-family: 'Ageo';
-    src: url('assets/font/Ageo/Ageo-BoldItalic.eot');
+    src: url('../assets/font/Ageo/Ageo-BoldItalic.eot');
     src: local('Ageo Bold Italic'), local('Ageo-BoldItalic'),
-        url('assets/font/Ageo/Ageo-BoldItalic.eot?#iefix') format('embedded-opentype'),
-        url('assets/font/Ageo/Ageo-BoldItalic.woff2') format('woff2'),
-        url('assets/font/Ageo/Ageo-BoldItalic.woff') format('woff'),
-        url('assets/font/Ageo/Ageo-BoldItalic.ttf') format('truetype');
+        url('../assets/font/Ageo/Ageo-BoldItalic.eot?#iefix') format('embedded-opentype'),
+        url('../assets/font/Ageo/Ageo-BoldItalic.woff2') format('woff2'),
+        url('../assets/font/Ageo/Ageo-BoldItalic.woff') format('woff'),
+        url('../assets/font/Ageo/Ageo-BoldItalic.ttf') format('truetype');
     font-weight: bold;
     font-style: italic;
 }
 
 @font-face {
     font-family: 'Ageo';
-    src: url('assets/font/Ageo/Ageo-Heavy.eot');
+    src: url('../assets/font/Ageo/Ageo-Heavy.eot');
     src: local('Ageo Heavy'), local('Ageo-Heavy'),
-        url('assets/font/Ageo/Ageo-Heavy.eot?#iefix') format('embedded-opentype'),
-        url('assets/font/Ageo/Ageo-Heavy.woff2') format('woff2'),
-        url('assets/font/Ageo/Ageo-Heavy.woff') format('woff'),
-        url('assets/font/Ageo/Ageo-Heavy.ttf') format('truetype');
+        url('../assets/font/Ageo/Ageo-Heavy.eot?#iefix') format('embedded-opentype'),
+        url('../assets/font/Ageo/Ageo-Heavy.woff2') format('woff2'),
+        url('../assets/font/Ageo/Ageo-Heavy.woff') format('woff'),
+        url('../assets/font/Ageo/Ageo-Heavy.ttf') format('truetype');
     font-weight: 900;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Ageo';
-    src: url('assets/font/Ageo/Ageo-ThinItalic.eot');
+    src: url('../assets/font/Ageo/Ageo-ThinItalic.eot');
     src: local('Ageo Thin Italic'), local('Ageo-ThinItalic'),
-        url('assets/font/Ageo/Ageo-ThinItalic.eot?#iefix') format('embedded-opentype'),
-        url('assets/font/Ageo/Ageo-ThinItalic.woff2') format('woff2'),
-        url('assets/font/Ageo/Ageo-ThinItalic.woff') format('woff'),
-        url('assets/font/Ageo/Ageo-ThinItalic.ttf') format('truetype');
+        url('../assets/font/Ageo/Ageo-ThinItalic.eot?#iefix') format('embedded-opentype'),
+        url('../assets/font/Ageo/Ageo-ThinItalic.woff2') format('woff2'),
+        url('../assets/font/Ageo/Ageo-ThinItalic.woff') format('woff'),
+        url('../assets/font/Ageo/Ageo-ThinItalic.ttf') format('truetype');
     font-weight: 100;
     font-style: italic;
 }
 
 @font-face {
     font-family: 'Ageo';
-    src: url('assets/font/Ageo/Ageo-Light.eot');
+    src: url('../assets/font/Ageo/Ageo-Light.eot');
     src: local('Ageo Light'), local('Ageo-Light'),
-        url('assets/font/Ageo/Ageo-Light.eot?#iefix') format('embedded-opentype'),
-        url('assets/font/Ageo/Ageo-Light.woff2') format('woff2'),
-        url('assets/font/Ageo/Ageo-Light.woff') format('woff'),
-        url('assets/font/Ageo/Ageo-Light.ttf') format('truetype');
+        url('../assets/font/Ageo/Ageo-Light.eot?#iefix') format('embedded-opentype'),
+        url('../assets/font/Ageo/Ageo-Light.woff2') format('woff2'),
+        url('../assets/font/Ageo/Ageo-Light.woff') format('woff'),
+        url('../assets/font/Ageo/Ageo-Light.ttf') format('truetype');
     font-weight: 300;
     font-style: normal;
 }
 
+
+/* Site-wide settings on top of Bootstrap 5
+-------------------------------------------------- */
+:root {
+    /* Use Ageo everywhere, falling back to the system font */
+    --bs-body-font-family: Ageo, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    /* Menu text size; the light/dark toggle scales with it */
+    --navtext: 20px;
+}
+/* Keep the link blue from the Bootstrap 4 version of the site (light mode only;
+   dark mode uses Bootstrap's lighter blue so links stay readable) */
+:root:not([data-bs-theme="dark"]) {
+    --bs-link-color-rgb: 0, 123, 255;
+    --bs-link-hover-color-rgb: 0, 86, 179;
+}
+
+/* Bootstrap 5 underlines links by default; only underline plain links on hover, like before */
+a { text-decoration: none; }
+a:not([class]):hover { text-decoration: underline; }
+
+/* Bootstrap 5's divider lines are darker than before */
+hr { opacity: 0.1; }
+
+
+/* Navbar: Sunrises sun + light/dark switch + Sunsets moon, as one control
+-------------------------------------------------- */
+/* Line the menu items up on the text baseline so the toggle can match the letters */
+.navbar > .container { align-items: baseline; }
+.navbar .navbar-toggler { align-self: center; }
+
+/* Sizes are multiples of "cap" (the height of a capital letter in the menu font),
+   and each piece is centred on the letters using the same number, so everything
+   stays lined up at any text size. To resize, change --switch / --sun / --moon. */
+.theme-combo {
+    --switch: 1.3; --sun: 1.35; --moon: 1.1;
+    font-size: var(--navtext);
+    display: inline-block;
+    white-space: nowrap;
+}
+.theme-combo > * {
+    display: inline-block;
+    margin: 0 0.15em;
+    line-height: 0;
+    height: calc(var(--k) * 1cap);
+    vertical-align: calc((1 - var(--k)) * 0.5cap);
+}
+/* Gap before the sun = the gap between Bio, CV and Pubs (each link's side padding, twice) */
+@media (min-width: 768px) {
+    .theme-combo { margin-left: var(--bs-navbar-nav-link-padding-x) !important; }
+}
+.theme-combo > :first-child { margin-left: 0; }
+.theme-combo .sun-link     { --k: var(--sun); color: #8bb0fb; transition: opacity .25s, color .2s; }
+.theme-combo .theme-switch { --k: var(--switch); padding: 0; min-height: 0; }
+.theme-combo .moon-link    { --k: var(--moon); color: #8bb0fb; transition: opacity .25s, color .2s; }
+.theme-combo svg { display: block; height: 100%; width: auto; }
+.theme-combo .sun-link:hover { color: #fff; opacity: 1; }
+.theme-combo .moon-link:hover { color: #fff; opacity: 1; }
+/* The side you're on is bright, the other side dims */
+[data-bs-theme="dark"] .theme-combo .sun-link { opacity: .4; }
+:root:not([data-bs-theme="dark"]) .theme-combo .moon-link { opacity: .4; }
+
+/* The switch itself, coloured for the navy bar.
+   Its look follows the page's theme (set in <head> before anything draws), not the
+   checkbox state, so it appears in the right position on every page without sliding. */
+.theme-combo .form-check-input {
+    display: block; float: none; margin: 0; font-size: inherit; cursor: pointer;
+    height: 100%; width: calc(var(--switch) * 1.85cap);
+}
+:root:not([data-bs-theme="dark"]) .theme-combo .form-check-input {
+    background-position: left center;
+    background-color: transparent; border-color: #8bb0fb;
+    --bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%238bb0fb'/%3e%3c/svg%3e");
+}
+[data-bs-theme="dark"] .theme-combo .form-check-input {
+    background-position: right center;
+    background-color: #8bb0fb; border-color: #8bb0fb;
+    --bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23000444'/%3e%3c/svg%3e");
+}
+.theme-combo .form-check-input:focus { box-shadow: none; }
+.theme-combo .form-check-input:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+
+/* Older browsers without the "cap" unit: approximate it (a capital letter is ~0.73em in Ageo) */
+@supports not (height: 1cap) {
+    .theme-combo > * { height: calc(var(--k) * 0.73em); vertical-align: calc((1 - var(--k)) * 0.365em); }
+    .theme-combo .form-check-input { width: calc(var(--switch) * 1.35em); }
+}
+
+.justified { text-align: justify; text-justify: inter-word; hyphens: auto; }
+
+/* Carousels (Pubs, Treats): keep white arrows and dots in dark mode.
+   Bootstrap turns them black in dark mode, which disappears on photos. */
+[data-bs-theme="dark"] .carousel {
+    --bs-carousel-control-icon-filter: none;
+    --bs-carousel-indicator-active-bg: #fff;
+}

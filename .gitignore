@@ -1,0 +1,18 @@
+# Original phone videos are too big for the site; compress_media.sh makes .mp4 copies to commit instead
+*.MOV
+*.mov
+# Original sunrise/sunset photos are big and can contain GPS location; compress_media.sh makes .web.jpg copies to commit
+*.heic
+*.heif
+files/sunrises/*/**/*.jpg
+files/sunrises/*/**/*.jpeg
+files/sunrises/*/**/*.png
+files/sunsets/*/**/*.jpg
+files/sunsets/*/**/*.jpeg
+files/sunsets/*/**/*.png
+!files/sunrises/**/*.web.jpg
+!files/sunsets/**/*.web.jpg
+# Photo/video metadata saved by files/strip_metadata.py (GPS, dates): stays on this computer only
+media_metadata.json
+# Original photos/videos (full size, with GPS): compress_media.sh moves them here; never pushed
+/originals/

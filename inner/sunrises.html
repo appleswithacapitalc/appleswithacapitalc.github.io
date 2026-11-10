@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Sunrises">
+    <meta name="author" content="Mian Wei">
+
+    <title>Mian Wei</title>
+
+    <!-- Bootstrap core CSS -->
+    <script src="../assets/js/theme.js"></script>
+    <link href="../dist/bootstrap-5.3.8/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/stylesheet.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="sticky-footer-navbar.css" rel="stylesheet">
+    <link href="../css/sunlog.css" rel="stylesheet">
+    <style>
+      /* Washed-out photo background. To make it fainter or stronger, change --sunrise-wash in css/sunlog.css
+         (1 = plain light grey, 0 = full-strength photo). */
+      body.sunrise-bg {
+        background-color: var(--bs-tertiary-bg);
+        background-image:
+          linear-gradient(var(--sunrise-wash), var(--sunrise-wash)),
+          url("../files/sunrises/sunrise_bkg.jpg");
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;   /* photo stays still while the page scrolls */
+      }
+    </style>
+  </head>
+
+  <body class="sunrise-bg" data-bs-spy="scroll" data-bs-target="#sunrise-dates" data-bs-root-margin="-100px 0px -50%">
+
+
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background-color: #000444;">
+            <div class="container">
+            <a class="navbar-brand" href="../mera.html">Mian Wei</a>
+            <div class="theme-combo ms-auto order-md-last">
+                <a class="sun-link" href="sunrises.html" title="Sunrises" aria-label="Sunrises"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6m0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8M8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0m0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13m8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5M3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8m10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0m-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0m9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707M4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708"/></svg></a>
+                <div class="form-check form-switch theme-switch"><input class="form-check-input" type="checkbox" role="switch" aria-label="Dark mode"></div>
+                <a class="moon-link" href="sunsets.html" title="Sunsets" aria-label="Sunsets"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true"><path d="M6 .278a.77.77 0 0 1 .08.858 7.2 7.2 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277q.792-.001 1.533-.16a.79.79 0 0 1 .81.316.73.73 0 0 1-.031.893A8.35 8.35 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.75.75 0 0 1 6 .278"/></svg></a>
+            </div>
+            <button class="navbar-toggler ms-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../mera.html#bio">Bio </a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="../files/important/Resume.pdf">CV </a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="pubs.html">Pubs</a>
+                    </li>
+
+                </ul>
+            </div>
+            </div>
+        </nav>
+    
+
+    <main role="main" class="flex-shrink-0 below-navbar">
+
+        <div class="py-5">
+            <div class="container">
+
+            <h2 id='sunrises'> Sunrises</h2>
+
+            <!-- Intro blurb: edit freely -->
+            <p class="justified mb-4">
+                Around October 2026, I thought about how many sunrises each of us is privy to in our lifetime. By my estimate, it's about thirty thousand (30,000) sunrises, 
+                which corresponds to an age of 82 years and 50 days, give or take. I was sad to realize this, because it somehow seemed like sunrises
+                were an infinite resource, even though logic dictates otherwise. So I am challenging myself to see three thousand (3,000) sunrises (and possibly sunsets) by the time I die, and this blog/website
+                serves as a record of my progress. I estimate I'll achieve this goal around 2040 &#128522;. 
+                
+                Writing each post is still a work in progress and admittedly, I'm using the term sunrises loosely as some of these images might not necessarily be taken at dawn, but I will still count them.
+            </p>
+
+            <div class="row">
+
+                <!-- Sidebar and posts are built automatically from ../files/sunrises/sunrises.js.
+                     To add a sunrise, edit that file, not this one. -->
+                <div class="col-md-3">
+                    <nav id="sunrise-dates" class="sticky-top mb-4"></nav>
+                </div>
+
+                <div class="col-md-9" id="sunrise-posts">
+                    <p class="text-muted">Loading sunrises...</p>
+                </div>
+            </div>
+
+        </div>
+      </div>
+
+    </main>
+
+<footer class="footer mt-auto py-3" >
+    <div class="container">
+        <span class="text-muted">Website is still a work in progress evidently. (I tried to inject some humour into it). I also do not have a penchant for 
+            programming HTML so much of this website's formatting was done with the help of LLMs (such as Claude, for transparency).
+        </span>
+    </div>
+</footer>
+
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../dist/bootstrap-5.3.8/js/bootstrap.bundle.min.js"></script>
+    <script>
+      // Remember any typo in the data file so the page can say where it is
+      window.addEventListener('error', function (ev) {
+        if (ev.filename && ev.filename.indexOf('/files/') !== -1) window.SUNLOG_ERROR = ev.message + ' (line ' + ev.lineno + ')';
+      });
+    </script>
+    <script src="../files/sunrises/sunrises.js"></script>
+    <script src="../assets/js/sunlog.js"></script>
+    <script>
+      // Builds the sidebar and posts. To add a sunrise, edit ../files/sunrises/sunrises.js, not this page.
+      SunLog({ data: typeof SUNRISES !== 'undefined' && SUNRISES, name: 'Sunrise', dir: '../files/sunrises/', file: 'sunrises.js' });
+    </script>
+    
+    <!-- carousel -->
+    <!-- twenty-twenty comparison slider -->
+
+    
+  </body>
+</html>
