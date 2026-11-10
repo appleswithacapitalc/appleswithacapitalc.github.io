@@ -108,7 +108,7 @@ const SUNSETS = [
   {
     "date": "2026-03-08",
     "title": "",
-    "location": "Robert E. Williams Memorial Park, Pittsburgh, Pennsylvania",
+    "location": "Pittsburgh, Pennsylvania",
     "photo": "2026/2026-03-08.jpeg",
     "text": ""
   },

@@ -20,7 +20,7 @@ const SUNRISES = [
   {
     "date": "2026-11-10",
     "title": "",
-    "location": "Robert E. Williams Memorial Park, Pittsburgh, Pennsylvania",
+    "location": "Pittsburgh, Pennsylvania",
     "video": "2026/11-Nov/2026-11-10.mp4",
     "text": ""
   },
@@ -28,7 +28,7 @@ const SUNRISES = [
   {
     "date": "2026-11-09",
     "title": "",
-    "location": "Robert E. Williams Memorial Park, Pittsburgh, Pennsylvania",
+    "location": "Pittsburgh, Pennsylvania",
     "video": "2026/11-Nov/2026-11-09.mp4",
     "text": ""
   },
@@ -36,7 +36,7 @@ const SUNRISES = [
   {
     "date": "2026-11-06",
     "title": "",
-    "location": "Robert E. Williams Memorial Park, Pittsburgh, Pennsylvania",
+    "location": "Pittsburgh, Pennsylvania",
     "video": "2026/11-Nov/2026-11-06.mp4",
     "text": ""
   },
@@ -44,7 +44,7 @@ const SUNRISES = [
   {
     "date": "2026-11-05",
     "title": "",
-    "location": "Robert E. Williams Memorial Park, Pittsburgh, Pennsylvania",
+    "location": "Pittsburgh, Pennsylvania",
     "video": "2026/11-Nov/2026-11-05.mp4",
     "text": ""
   },
@@ -52,7 +52,7 @@ const SUNRISES = [
   {
     "date": "2026-11-04",
     "title": "",
-    "location": "Robert E. Williams Memorial Park, Pittsburgh, Pennsylvania",
+    "location": "Pittsburgh, Pennsylvania",
     "video": "2026/11-Nov/2026-11-04.mp4",
     "text": ""
   },
@@ -60,7 +60,7 @@ const SUNRISES = [
   {
     "date": "2026-11-03",
     "title": "",
-    "location": "Robert E. Williams Memorial Park, Pittsburgh, Pennsylvania",
+    "location": "Pittsburgh, Pennsylvania",
     "video": "2026/11-Nov/2026-11-03.mp4",
     "text": ""
   },
@@ -68,7 +68,7 @@ const SUNRISES = [
   {
     "date": "2026-11-02",
     "title": "",
-    "location": "Robert E. Williams Memorial Park, Pittsburgh, Pennsylvania",
+    "location": "Pittsburgh, Pennsylvania",
     "video": "2026/11-Nov/2026-11-02.mp4",
     "text": ""
   },
@@ -76,7 +76,7 @@ const SUNRISES = [
   {
     "date": "2026-10-27",
     "title": "",
-    "location": "Robert E. Williams Memorial Park, Pittsburgh, Pennsylvania",
+    "location": "Pittsburgh, Pennsylvania",
     "video": "2026/10-Oct/2026-10-27.mp4",
     "text": ""
   },
@@ -84,7 +84,7 @@ const SUNRISES = [
   {
     "date": "2026-10-20",
     "title": "",
-    "location": "Robert E. Williams Memorial Park, Pittsburgh, Pennsylvania",
+    "location": "Pittsburgh, Pennsylvania",
     "photo": "2026/10-Oct/2026-10-20.jpeg",
     "text": ""
   },
@@ -92,7 +92,7 @@ const SUNRISES = [
   {
     "date": "2026-10-19",
     "title": "",
-    "location": "Robert E. Williams Memorial Park, Pittsburgh, Pennsylvania",
+    "location": "Pittsburgh, Pennsylvania",
     "photo": "2026/10-Oct/2026-10-19.jpeg",
     "text": ""
   },
@@ -100,7 +100,7 @@ const SUNRISES = [
   {
     "date": "2026-10-08",
     "title": "",
-    "location": "Robert E. Williams Memorial Park, Pittsburgh, Pennsylvania",
+    "location": "Pittsburgh, Pennsylvania",
     "photo": "2026/10-Oct/2026-10-08.jpeg",
     "text": ""
   },
