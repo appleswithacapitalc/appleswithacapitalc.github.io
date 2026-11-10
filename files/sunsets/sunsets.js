@@ -404,7 +404,7 @@ const SUNSETS = [
   {
     "date": "2019-02-20",
     "title": "",
-    "location": "Golden Gate Bridge, San Francisco, United States",
+    "location": "Golden Gate Bridge, San Francisco, California",
     "photo": "pre2026/2019-02-20.jpeg",
     "text": ""
   },
@@ -412,7 +412,7 @@ const SUNSETS = [
   {
     "date": "2018-11-18",
     "title": "",
-    "location": "Madison, United States",
+    "location": "Madison, Wisconsin",
     "photo": "pre2026/2018-11-18.jpeg",
     "text": ""
   },
@@ -420,7 +420,7 @@ const SUNSETS = [
   {
     "date": "2018-11-14",
     "title": "",
-    "location": "Tenney Park, Madison, United States",
+    "location": "Tenney Park, Madison, Wisconsin",
     "photo": "pre2026/2018-11-14.jpeg",
     "text": ""
   },
@@ -428,7 +428,7 @@ const SUNSETS = [
   {
     "date": "2018-08-16",
     "title": "",
-    "location": "Lulu Island, Richmond, Canada",
+    "location": "Lulu Island, Richmond, British Columbia",
     "photo": "pre2026/2018-08-16.jpeg",
     "text": ""
   },
@@ -436,7 +436,7 @@ const SUNSETS = [
   {
     "date": "2018-07-17",
     "title": "",
-    "location": "Madison, United States",
+    "location": "Madison, Wisconsin",
     "photo": "pre2026/2018-07-17.jpeg",
     "text": ""
   },
@@ -452,7 +452,7 @@ const SUNSETS = [
   {
     "date": "2017-08-30",
     "title": "",
-    "location": "Stanley Park, Vancouver, Canada",
+    "location": "Stanley Park, Vancouver, British Columbia",
     "photo": "pre2026/2017-08-30.JPG",
     "text": ""
   },
@@ -460,7 +460,7 @@ const SUNSETS = [
   {
     "date": "2017-08-20",
     "title": "",
-    "location": "Calgary, Canada",
+    "location": "Calgary, Alberta",
     "photo": "pre2026/2017-08-20.JPG",
     "text": ""
   },
@@ -484,7 +484,7 @@ const SUNSETS = [
   {
     "date": "2015-05-06",
     "title": "",
-    "location": "Devil's Punchbowl, Hamilton, Canada",
+    "location": "Devil's Punchbowl, Hamilton, Ontario",
     "photo": "pre2026/2015-05-06.JPG",
     "text": ""
   },

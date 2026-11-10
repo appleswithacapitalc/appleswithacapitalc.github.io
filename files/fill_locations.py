@@ -7,8 +7,8 @@ compress_media.sh runs this automatically at the end (after strip_metadata.py ha
 - Only fills posts whose "location" is empty (""), so anything you type yourself is never changed.
   To stop a post from getting a location, write something like "location": " " (a space).
 - Uses Apple's map lookup (the same one Photos uses) to turn GPS into a place name:
-    a named attraction if there is one:  "Stanley Park, Vancouver, Canada"
-    otherwise the city:                  "Madison, United States"
+    US / Canada:      [attraction,] city, state/province   "Stanley Park, Vancouver, British Columbia"
+    everywhere else:  [attraction,] city, country          "Angkor Wat, Siem Reap, Cambodia"
 - Hotels and resorts are skipped as attractions (just the city is used), so it doesn't say where you stayed.
 - Looked-up places are remembered in media_metadata.json, so each photo is only looked up once.
 """
@@ -33,6 +33,8 @@ while let line = readLine() {
       out["attraction"] = pl.areasOfInterest?.first ?? ""
       out["city"] = pl.locality ?? pl.subAdministrativeArea ?? pl.administrativeArea ?? ""
       out["country"] = pl.country ?? ""
+      out["state"] = pl.administrativeArea ?? ""
+      out["cc"] = pl.isoCountryCode ?? ""
     }
     sem.signal()
   }
@@ -66,15 +68,36 @@ def gps_of(entry):
     return None
 
 
+# Apple gives US states / Canadian provinces as abbreviations; spell them out
+REGIONS = {
+    'AL': 'Alabama', 'AK': 'Alaska', 'AZ': 'Arizona', 'AR': 'Arkansas', 'CA': 'California', 'CO': 'Colorado',
+    'CT': 'Connecticut', 'DE': 'Delaware', 'DC': 'District of Columbia', 'FL': 'Florida', 'GA': 'Georgia',
+    'HI': 'Hawaii', 'ID': 'Idaho', 'IL': 'Illinois', 'IN': 'Indiana', 'IA': 'Iowa', 'KS': 'Kansas',
+    'KY': 'Kentucky', 'LA': 'Louisiana', 'ME': 'Maine', 'MD': 'Maryland', 'MA': 'Massachusetts', 'MI': 'Michigan',
+    'MN': 'Minnesota', 'MS': 'Mississippi', 'MO': 'Missouri', 'MT': 'Montana', 'NE': 'Nebraska', 'NV': 'Nevada',
+    'NH': 'New Hampshire', 'NJ': 'New Jersey', 'NM': 'New Mexico', 'NY': 'New York', 'NC': 'North Carolina',
+    'ND': 'North Dakota', 'OH': 'Ohio', 'OK': 'Oklahoma', 'OR': 'Oregon', 'PA': 'Pennsylvania', 'RI': 'Rhode Island',
+    'SC': 'South Carolina', 'SD': 'South Dakota', 'TN': 'Tennessee', 'TX': 'Texas', 'UT': 'Utah', 'VT': 'Vermont',
+    'VA': 'Virginia', 'WA': 'Washington', 'WV': 'West Virginia', 'WI': 'Wisconsin', 'WY': 'Wyoming', 'PR': 'Puerto Rico',
+    'AB': 'Alberta', 'BC': 'British Columbia', 'MB': 'Manitoba', 'NB': 'New Brunswick', 'NL': 'Newfoundland and Labrador',
+    'NS': 'Nova Scotia', 'NT': 'Northwest Territories', 'NU': 'Nunavut', 'ON': 'Ontario', 'PE': 'Prince Edward Island',
+    'QC': 'Quebec', 'SK': 'Saskatchewan', 'YT': 'Yukon',
+}
+
+
 def place_name(p):
     city, country, att = p.get('city', ''), p.get('country', ''), p.get('attraction', '')
+    # US and Canada get the state / province instead of the country
+    state = REGIONS.get(p.get('state', ''), p.get('state', '')) if p.get('cc') in ('US', 'CA') else ''
     if att and SKIP_ATTRACTION.search(att):
         att = ''
     att = att.replace('’', "'")
     parts = [att] if att else []
     if city and city.lower() not in att.lower():
         parts.append(city)
-    if country:
+    if state and state != city:
+        parts.append(state)
+    if country and not state:
         parts.append(country)
     return ', '.join(parts)
 
@@ -116,7 +139,7 @@ def main():
                     break
 
     # Look up places not looked up before
-    need = [k for _, _, k in todo if 'place' not in meta[k]]
+    need = [k for _, _, k in todo if 'cc' not in (meta[k].get('place') or {})]
     if need:
         print('Looking up %d place(s)...' % len(need))
         with tempfile.NamedTemporaryFile('w', suffix='.swift', delete=False) as f:

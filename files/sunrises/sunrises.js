@@ -115,7 +115,7 @@ const SUNRISES = [
   {
     "date": "2025-11-04",
     "title": "",
-    "location": "Mississauga, Ontario, Canada",
+    "location": "Mississauga, Ontario",
     "photo": "pre2026/2025-11-04.jpeg",
     "text": ""
   },
@@ -123,7 +123,7 @@ const SUNRISES = [
   {
     "date": "2025-08-17",
     "title": "",
-    "location": "Moraine Lake, Banff National Park, Alberta, Canada",
+    "location": "Moraine Lake, Banff National Park, Alberta",
     "photo": "pre2026/2025-08-17.jpeg",
     "text": ""
   },
@@ -131,7 +131,7 @@ const SUNRISES = [
   {
     "date": "2025-08-08",
     "title": "",
-    "location": "Lakeside Park, Oakville, Ontario, Canada",
+    "location": "Lakeside Park, Oakville, Ontario",
     "photo": "pre2026/2025-08-08.jpeg",
     "text": ""
   },
@@ -155,7 +155,7 @@ const SUNRISES = [
   {
     "date": "2024-06-16",
     "title": "",
-    "location": "Emsdale Lake, Kearney, Ontario, Canada",
+    "location": "Emsdale Lake, Kearney, Ontario",
     "video": "pre2026/2024-06-16.mp4",
     "speed": 1,
     "text": ""
@@ -180,7 +180,7 @@ const SUNRISES = [
   {
     "date": "2022-09-22",
     "title": "",
-    "location": "On a plane over Toronto, Ontario, Canada",
+    "location": "On a plane over Toronto, Ontario",
     "photo": "pre2026/2022-09-22.jpg",
     "text": ""
   },
