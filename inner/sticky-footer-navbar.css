@@ -65,3 +65,8 @@ h2::before {
     visibility: hidden;
 }
 
+
+/* Extra room below the fixed navbar so page titles aren't cramped */
+main.below-navbar {
+    padding-top: 40px;
+}

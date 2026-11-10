@@ -160,3 +160,7 @@ video {
   text-justify: inter-word;   /* better spacing */
   hyphens: auto;  
 }
+/* Leave room below the fixed navbar when jumping to #bio (matches inner pages) */
+#bio {
+    scroll-margin-top: 40px;
+}
