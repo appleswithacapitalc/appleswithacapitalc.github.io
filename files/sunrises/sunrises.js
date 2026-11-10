@@ -165,7 +165,7 @@ const SUNRISES = [
   {
     "date": "2023-12-21",
     "title": "",
-    "location": "",
+    "location": "Autoroute 15 near Sainte-Adèle, Quebec",
     "photo": "pre2026/2023-12-21.jpeg",
     "text": ""
   },
@@ -181,7 +181,7 @@ const SUNRISES = [
   {
     "date": "2023-10-12",
     "title": "",
-    "location": "",
+    "location": "Nice, France",
     "photo": "pre2026/2023-10-12.HEIC",
     "text": ""
   },
@@ -197,7 +197,7 @@ const SUNRISES = [
   {
     "date": "2023-10-08",
     "title": "",
-    "location": "",
+    "location": "Seine River, Paris, France",
     "photo": "pre2026/2023-10-08.HEIC",
     "text": ""
   },

@@ -20,7 +20,7 @@ const SUNSETS = [
   {
     "date": "2026-11-08",
     "title": "",
-    "location": "",
+    "location": "Pittsburgh, Pennsylvania",
     "photo": "2026/2026-11-08.jpeg",
     "text": ""
   },
@@ -36,7 +36,7 @@ const SUNSETS = [
   {
     "date": "2026-10-27",
     "title": "",
-    "location": "",
+    "location": "Schenley Park, Pittsburgh, Pennsylvania",
     "photo": "2026/2026-10-27.jpeg",
     "text": ""
   },
@@ -52,7 +52,7 @@ const SUNSETS = [
   {
     "date": "2026-10-03",
     "title": "",
-    "location": "",
+    "location": "West Lafayette, Indiana",
     "photo": "2026/2026-10-03.jpeg",
     "text": ""
   },
@@ -60,7 +60,7 @@ const SUNSETS = [
   {
     "date": "2026-09-08",
     "title": "",
-    "location": "",
+    "location": "Pittsburgh, Pennsylvania",
     "photo": "2026/2026-09-08.jpeg",
     "text": ""
   },
@@ -76,7 +76,7 @@ const SUNSETS = [
   {
     "date": "2026-07-16",
     "title": "",
-    "location": "",
+    "location": "Hudson River, New York City, New York",
     "photo": "2026/2026-07-16.jpeg",
     "text": ""
   },
@@ -84,7 +84,7 @@ const SUNSETS = [
   {
     "date": "2026-07-11",
     "title": "",
-    "location": "",
+    "location": "Princeton University, Princeton, New Jersey",
     "photo": "2026/2026-07-11.HEIC",
     "text": ""
   },
@@ -92,7 +92,7 @@ const SUNSETS = [
   {
     "date": "2026-05-15",
     "title": "",
-    "location": "Pittsburgh, Pennsylvania",
+    "location": "Mount Washington, Pittsburgh, Pennsylvania",
     "photo": "2026/2026-05-15.jpeg",
     "text": ""
   },
@@ -100,7 +100,7 @@ const SUNSETS = [
   {
     "date": "2026-04-09",
     "title": "",
-    "location": "Schenley Plaza, Pittsburgh, Pennsylvania",
+    "location": "Carnegie Mellon University, Pittsburgh, Pennsylvania",
     "photo": "2026/2026-04-09.HEIC",
     "text": ""
   },
@@ -108,7 +108,7 @@ const SUNSETS = [
   {
     "date": "2026-03-08",
     "title": "",
-    "location": "",
+    "location": "Robert E. Williams Memorial Park, Pittsburgh, Pennsylvania",
     "photo": "2026/2026-03-08.jpeg",
     "text": ""
   },
@@ -116,7 +116,7 @@ const SUNSETS = [
   {
     "date": "2025-10-04",
     "title": "",
-    "location": "",
+    "location": "London, Ontario",
     "photo": "pre2026/2025-10-04.HEIC",
     "text": ""
   },
@@ -124,7 +124,7 @@ const SUNSETS = [
   {
     "date": "2025-08-18",
     "title": "",
-    "location": "",
+    "location": "Lake Minnewanka, Banff National Park, Alberta",
     "photo": "pre2026/2025-08-18.HEIC",
     "text": ""
   },
@@ -140,7 +140,7 @@ const SUNSETS = [
   {
     "date": "2025-08-07",
     "title": "",
-    "location": "",
+    "location": "The Beaches Boardwalk, Toronto, Ontario",
     "photo": "pre2026/2025-08-07.jpeg",
     "text": ""
   },
@@ -148,7 +148,7 @@ const SUNSETS = [
   {
     "date": "2025-06-10",
     "title": "",
-    "location": "",
+    "location": "Nashville, Tennessee",
     "photo": "pre2026/2025-06-10.jpeg",
     "text": ""
   },
@@ -164,7 +164,7 @@ const SUNSETS = [
   {
     "date": "2025-02-28",
     "title": "",
-    "location": "",
+    "location": "Miroir d'eau, Bordeaux, France",
     "photo": "pre2026/2025-02-28.jpeg",
     "text": ""
   },
@@ -172,7 +172,7 @@ const SUNSETS = [
   {
     "date": "2025-02-25",
     "title": "",
-    "location": "",
+    "location": "Grenoble, France",
     "photo": "pre2026/2025-02-25.HEIC",
     "text": ""
   },
@@ -188,7 +188,7 @@ const SUNSETS = [
   {
     "date": "2025-02-20",
     "title": "",
-    "location": "",
+    "location": "Santa Maria in Aracoeli, Rome, Italy",
     "photo": "pre2026/2025-02-20.jpeg",
     "text": ""
   },
@@ -196,7 +196,7 @@ const SUNSETS = [
   {
     "date": "2024-12-25",
     "title": "",
-    "location": "",
+    "location": "Rattray Marsh Conservation Area, Mississauga, Ontario",
     "photo": "pre2026/2024-12-25.jpeg",
     "text": ""
   },
@@ -276,7 +276,7 @@ const SUNSETS = [
   {
     "date": "2023-10-10",
     "title": "",
-    "location": "",
+    "location": "Lake Neuchâtel, Switzerland",
     "photo": "pre2026/2023-10-10.jpeg",
     "text": ""
   },
@@ -284,7 +284,7 @@ const SUNSETS = [
   {
     "date": "2023-10-03",
     "title": "",
-    "location": "",
+    "location": "Paris, France",
     "photo": "pre2026/2023-10-03.HEIC",
     "text": ""
   },
@@ -300,7 +300,7 @@ const SUNSETS = [
   {
     "date": "2023-09-11",
     "title": "",
-    "location": "",
+    "location": "Evergreen Brick Works, Toronto, Ontario",
     "photo": "pre2026/2023-09-11.HEIC",
     "text": ""
   },
@@ -308,7 +308,7 @@ const SUNSETS = [
   {
     "date": "2023-08-27",
     "title": "",
-    "location": "",
+    "location": "Madison, Wisconsin",
     "photo": "pre2026/2023-08-27.HEIC",
     "text": ""
   },
@@ -316,7 +316,7 @@ const SUNSETS = [
   {
     "date": "2023-08-26",
     "title": "",
-    "location": "",
+    "location": "Madison, Wisconsin",
     "photo": "pre2026/2023-08-26.jpeg",
     "text": ""
   },
@@ -340,7 +340,7 @@ const SUNSETS = [
   {
     "date": "2022-12-20",
     "title": "",
-    "location": "",
+    "location": "Ben T. Davis Beach, Tampa, Florida",
     "photo": "pre2026/2022-12-20.jpg",
     "text": ""
   },
@@ -364,7 +364,7 @@ const SUNSETS = [
   {
     "date": "2022-03-06",
     "title": "",
-    "location": "",
+    "location": "San Francisco, California",
     "photo": "pre2026/2022-03-06.jpg",
     "text": ""
   },
@@ -396,7 +396,7 @@ const SUNSETS = [
   {
     "date": "2020-11-28",
     "title": "",
-    "location": "",
+    "location": "Evergreen Brick Works, Toronto, Ontario",
     "photo": "pre2026/2020-11-28.jpg",
     "text": ""
   },
@@ -428,7 +428,7 @@ const SUNSETS = [
   {
     "date": "2020-01-25",
     "title": "",
-    "location": "",
+    "location": "Whistler, British Columbia",
     "photo": "pre2026/2020-01-25.jpg",
     "text": ""
   },
@@ -452,7 +452,7 @@ const SUNSETS = [
   {
     "date": "2019-09-16",
     "title": "",
-    "location": "",
+    "location": "Madison, Wisconsin",
     "photo": "pre2026/2019-09-16.jpg",
     "text": ""
   },
@@ -581,7 +581,7 @@ const SUNSETS = [
   {
     "date": "2009-08",
     "title": "",
-    "location": "",
+    "location": "An airport in Belgium or the Netherlands",
     "photo": "pre2026/2009-08.jpg",
     "text": ""
   },
