@@ -30,7 +30,7 @@ function SunLog(opts) {
     // Newest first, regardless of order in the file
     entries.sort(function (a, b) { return (b.y - a.y) || (b.mo - a.mo) || (b.d - a.d); });
 
-    var posts = '', sidebar = '', usedIds = {};
+    var posts = '', sidebar = '', usedIds = {}, jump = [];
     var lastYear = null, lastMonth = null, firstYear = true, firstMonth = true;
 
     entries.forEach(function (e, i) {
@@ -59,6 +59,9 @@ function SunLog(opts) {
       }
       sidebar += '<a class="list-group-item list-group-item-action" href="#' + id + '">' +
                  '<span>' + MONTHS[e.mo - 1].slice(0, 3) + (e.d ? ' ' + pad(e.d) : '') + '</span><span>' + NAME + ' #' + num + '</span></a>';
+      // Same list for the phone dropdown, grouped by month
+      jump.push({ group: MONTHS[e.mo - 1] + ' ' + e.y, id: id,
+                  label: MONTHS[e.mo - 1].slice(0, 3) + (e.d ? ' ' + pad(e.d) : '') + '  \u00b7  ' + NAME + ' #' + num });
 
       // Post card. "photo" and "video" can each be one filename or a list of filenames.
       // Photos: use the small .web.jpg copy made by compress_media.sh (e.g. 2026-10-20.jpeg -> 2026-10-20.web.jpg)
@@ -100,6 +103,7 @@ function SunLog(opts) {
     document.getElementById('sunrise-posts').innerHTML =
       posts || '<p class="text-muted">No ' + name + 's yet.</p>';
 
+    buildJump(jump);
     setUpSpeeds();
     sizeDateColumn();
     if (document.fonts) document.fonts.ready.then(sizeDateColumn);   // re-measure once Ageo has loaded
@@ -111,6 +115,42 @@ function SunLog(opts) {
       var target = document.getElementById(location.hash.slice(1));
       if (target) target.scrollIntoView();
     }
+  }
+
+  // Phones: instead of the long sidebar, a "jump to" dropdown pinned under the navbar.
+  // It uses the phone's own picker, shows the post you're on, and jumps to the one you pick.
+  function buildJump(items) {
+    var side = document.getElementById('sunrise-dates');
+    side.parentElement.classList.add('d-none', 'd-md-block');          // sidebar: computers only
+    var bar = document.getElementById('sunlog-jump');
+    if (!bar) {
+      bar = document.createElement('div');
+      bar.id = 'sunlog-jump';
+      bar.className = 'd-md-none';
+      var row = side.closest('.row');
+      row.parentNode.insertBefore(bar, row);
+    }
+    var html = '<select class="form-select" aria-label="Jump to a ' + name + '">', group = null;
+    items.forEach(function (it) {
+      if (it.group !== group) {
+        if (group !== null) html += '</optgroup>';
+        html += '<optgroup label="' + esc(it.group) + '">'; group = it.group;
+      }
+      html += '<option value="' + it.id + '">' + esc(it.label) + '</option>';
+    });
+    bar.innerHTML = html + (group !== null ? '</optgroup>' : '') + '</select>';
+    bar.querySelector('select').addEventListener('change', function () {
+      var t = document.getElementById(this.value);
+      if (t) { t.scrollIntoView({ behavior: 'instant' }); history.replaceState(null, '', '#' + this.value); }
+      this.blur();
+    });
+    // Keep the bar just under the navbar, whatever its height
+    function navHeight() {
+      var nav = document.querySelector('.navbar.fixed-top');
+      document.documentElement.style.setProperty('--nav-h', (nav ? nav.offsetHeight : 56) + 'px');
+    }
+    navHeight();
+    window.addEventListener('resize', navHeight);
   }
 
   // Videos start sped up ("Normal"); the button switches to the speed they were filmed at ("Slowed down") and back.
@@ -171,6 +211,8 @@ function SunLog(opts) {
   document.body.addEventListener('activate.bs.scrollspy', function () {
     var link = document.querySelector('#sunrise-dates .list-group-item.active');
     var post = link && document.getElementById(link.getAttribute('href').slice(1));
+    var pick = document.querySelector('#sunlog-jump select');
+    if (pick && post) pick.value = post.id;                // phone dropdown shows the post you're on
     document.querySelectorAll('.sunrise-post video').forEach(function (v) {
       if (post && post.contains(v)) {
         var p = v.play();

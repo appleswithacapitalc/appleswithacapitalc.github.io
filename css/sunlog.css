@@ -57,3 +57,14 @@
              font: inherit; font-size: .8rem; line-height: 1; padding: .35rem .6rem;
              border: 0; border-radius: 1rem; background: rgba(0, 0, 0, .55); color: #fff; cursor: pointer; }
 .speed-btn:hover { background: rgba(0, 0, 0, .75); }
+
+/* Phones: "jump to" dropdown pinned under the navbar (the sidebar is hidden on small screens) */
+#sunlog-jump {
+  position: sticky; top: var(--nav-h, 56px); z-index: 1010;
+  margin: 0 -0.75rem 1rem; padding: 0.5rem 0.75rem;
+  background: var(--bs-body-bg); border-bottom: 1px solid var(--bs-border-color-translucent);
+}
+#sunlog-jump .form-select { font-size: 1rem; }      /* 16px+ stops iPhones zooming in when tapped */
+@media (max-width: 767.98px) {
+  .sunrise-post { scroll-margin-top: calc(var(--nav-h, 56px) + 70px); }   /* room for navbar + dropdown */
+}
