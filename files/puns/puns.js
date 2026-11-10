@@ -19,9 +19,8 @@ const PUNS_SETTINGS = {
 const PUNS = [
 
   {
-    "pun": "Placeholder pun 1",
-    "note": "Placeholder note (optional)",
-    "date": "2026-11-10"
+    "pun": "That's a real is-shoe",
+    "note": "Applicable anytime someone complains about shoe-related things, for example, these shoes are cluttering my floor."
   },
 
   {
