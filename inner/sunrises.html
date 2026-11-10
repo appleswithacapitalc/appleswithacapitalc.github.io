@@ -2,14 +2,16 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Sunrises">
     <meta name="author" content="Mian Wei">
 
     <title>Mian Wei</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="../dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="../assets/js/theme.js"></script>
+    <link href="../dist/bootstrap-5.3.8/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/stylesheet.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="sticky-footer-navbar.css" rel="stylesheet">
@@ -23,7 +25,7 @@
       #sunrise-dates .toggle {
         display: block; width: 100%; text-align: left;
         background: none; border: 0; padding: 0.3rem 0; cursor: pointer;
-        color: #000444;
+        color: var(--sunrise-accent);
       }
       #sunrise-dates .toggle:focus { outline: none; }
       #sunrise-dates .toggle::before {
@@ -39,37 +41,46 @@
       #sunrise-dates .list-group-item.active { background-color: #000444; border-color: #000444; }
       /* Leave room for the navbar when jumping to a post */
       .sunrise-post { scroll-margin-top: 100px; margin-bottom: 2rem; }
-      .sunrise-post .date { color: #6c757d; font-size: 0.9rem; }
+      .sunrise-post .date { color: var(--bs-secondary-color); font-size: 0.9rem; }
 
-      /* Washed-out photo background. To make it fainter or stronger, change 0.82
+      /* Colours that change with light / dark mode */
+      :root { --sunrise-accent: #000444; --sunrise-wash: rgba(248, 249, 250, 0.82); }
+      [data-bs-theme="dark"] { --sunrise-accent: #8bb0fb; --sunrise-wash: rgba(26, 29, 32, 0.84); }
+
+      /* Washed-out photo background. To make it fainter or stronger, change the last number in --sunrise-wash above
          (1 = plain light grey, 0 = full-strength photo). */
       body.sunrise-bg {
-        background-color: #f8f9fa;
+        background-color: var(--bs-tertiary-bg);
         background-image:
-          linear-gradient(rgba(248, 249, 250, 0.82), rgba(248, 249, 250, 0.82)),
+          linear-gradient(var(--sunrise-wash), var(--sunrise-wash)),
           url("../files/sunrises/sunrise_bkg.jpg");
         background-size: cover;
         background-position: center;
         background-attachment: fixed;   /* photo stays still while the page scrolls */
       }
       /* Sidebar links stay on solid white so they're easy to read */
-      #sunrise-dates .list-group-item { background-color: #fff; }
+      #sunrise-dates .list-group-item:not(.active) { background-color: var(--bs-body-bg); }
       /* Same text style as the bio on the homepage */
       .justified { text-align: justify; text-justify: inter-word; hyphens: auto; }
     </style>
   </head>
 
-  <body class="sunrise-bg" data-spy="scroll" data-target="#sunrise-dates" data-offset="120">
+  <body class="sunrise-bg" data-bs-spy="scroll" data-bs-target="#sunrise-dates" data-bs-root-margin="-100px 0px -50%">
 
 
         <nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background-color: #000444;">
             <div class="container">
             <a class="navbar-brand" href="../mera.html">Mian Wei</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <div class="theme-combo ms-auto ms-md-3 order-md-last">
+                <a class="sun-link" href="sunrises.html" title="Sunrises" aria-label="Sunrises"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6m0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8M8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0m0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13m8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5M3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8m10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0m-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0m9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707M4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708"/></svg></a>
+                <div class="form-check form-switch theme-switch"><input class="form-check-input" type="checkbox" role="switch" aria-label="Dark mode"></div>
+                <button type="button" class="moon-btn" aria-label="Dark mode" title="Dark mode"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true"><path d="M6 .278a.77.77 0 0 1 .08.858 7.2 7.2 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277q.792-.001 1.533-.16a.79.79 0 0 1 .81.316.73.73 0 0 1-.031.893A8.35 8.35 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.75.75 0 0 1 6 .278"/></svg></button>
+            </div>
+            <button class="navbar-toggler ms-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
-                <ul class="navbar-nav ml-auto">
+                <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="../mera.html#bio">Bio </a>
                     </li>
@@ -80,10 +91,6 @@
                     
                     <li class="nav-item">
                         <a class="nav-link" href="pubs.html">Pubs</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="sunrises.html" title="Sunrises" aria-label="Sunrises"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-sun" viewBox="0 0 16 16" aria-hidden="true" style="vertical-align: -0.15em;"><path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6m0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8M8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0m0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13m8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5M3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8m10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0m-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0m9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707M4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708"/></svg></a>
                     </li>
 
                 </ul>
@@ -138,11 +145,7 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="../js/jquery-3.3.1.slim.min.js"></script>
-    <script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
-    <script src="../assets/js/vendor/popper.min.js"></script>
-    <script src="../dist/js/bootstrap.min.js"></script>
-    <script src="../assets/js/vendor/holder.min.js"></script>
+    <script src="../dist/bootstrap-5.3.8/js/bootstrap.bundle.min.js"></script>
     <script>
       // Remember any typo in sunrises.js so the page can say where it is
       window.addEventListener('error', function (ev) {
@@ -189,7 +192,7 @@
             if (e.y !== lastYear) {
               if (lastYear !== null) sidebar += '</div></div></div>';
               sidebar += '<button type="button" class="toggle year' + (firstYear ? '' : ' collapsed') +
-                         '" data-toggle="collapse" data-target="#y' + e.y + '" aria-expanded="' + firstYear + '">' + e.y + '</button>' +
+                         '" data-bs-toggle="collapse" data-bs-target="#y' + e.y + '" aria-expanded="' + firstYear + '">' + e.y + '</button>' +
                          '<div class="collapse' + (firstYear ? ' show' : '') + '" id="y' + e.y + '">';
               lastYear = e.y; lastMonth = null;
             }
@@ -197,7 +200,7 @@
               if (lastMonth !== null) sidebar += '</div></div>';
               var mid = 'm' + e.y + '-' + pad(e.mo);
               sidebar += '<button type="button" class="toggle month' + (firstMonth ? '' : ' collapsed') +
-                         '" data-toggle="collapse" data-target="#' + mid + '" aria-expanded="' + firstMonth + '">' + MONTHS[e.mo - 1] + '</button>' +
+                         '" data-bs-toggle="collapse" data-bs-target="#' + mid + '" aria-expanded="' + firstMonth + '">' + MONTHS[e.mo - 1] + '</button>' +
                          '<div class="collapse' + (firstMonth ? ' show' : '') + '" id="' + mid + '"><div class="list-group">';
               lastMonth = e.mo; firstMonth = false; firstYear = false;
             }
@@ -227,7 +230,8 @@
           document.getElementById('sunrise-posts').innerHTML =
             posts || '<p class="text-muted">No sunrises yet.</p>';
 
-          $('body').scrollspy('refresh');
+          var spy = bootstrap.ScrollSpy.getInstance(document.body);
+          if (spy) spy.refresh();
           // If someone opened a link to a specific post, jump there now that it exists
           if (location.hash) {
             var target = document.getElementById(location.hash.slice(1));
@@ -250,8 +254,13 @@
         }
 
         // When a post becomes active (scrolling or a #link), open its year and month in the sidebar
-        $(window).on('activate.bs.scrollspy', function () {
-          $('#sunrise-dates .list-group-item.active').parents('.collapse').collapse('show');
+        document.body.addEventListener('activate.bs.scrollspy', function () {
+          var link = document.querySelector('#sunrise-dates .list-group-item.active');
+          var section = link && link.closest('.collapse');
+          while (section) {
+            bootstrap.Collapse.getOrCreateInstance(section, { toggle: false }).show();
+            section = section.parentElement.closest('.collapse');
+          }
         });
       })();
     </script>
