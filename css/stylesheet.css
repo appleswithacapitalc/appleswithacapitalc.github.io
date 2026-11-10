@@ -214,7 +214,7 @@ a:not([class]):hover { text-decoration: underline; }
 hr { opacity: 0.1; }
 
 
-/* Navbar: Sunrises sun + light/dark switch + moon, as one control
+/* Navbar: Sunrises sun + light/dark switch + Sunsets moon, as one control
 -------------------------------------------------- */
 /* Line the menu items up on the text baseline so the toggle can match the letters */
 .navbar > .container { align-items: baseline; }
@@ -243,16 +243,13 @@ hr { opacity: 0.1; }
 .theme-combo > :first-child { margin-left: 0; }
 .theme-combo .sun-link     { --k: var(--sun); color: #8bb0fb; transition: opacity .25s, color .2s; }
 .theme-combo .theme-switch { --k: var(--switch); padding: 0; min-height: 0; }
-.theme-combo .moon-btn     { --k: var(--moon); color: #8bb0fb; background: none; border: 0; padding: 0;
-                             cursor: pointer; transition: opacity .25s, color .2s; }
-/* Moon turns dark mode on; once it's on there's nothing to click */
-[data-bs-theme="dark"] .theme-combo .moon-btn { cursor: default; }
+.theme-combo .moon-link    { --k: var(--moon); color: #8bb0fb; transition: opacity .25s, color .2s; }
 .theme-combo svg { display: block; height: 100%; width: auto; }
 .theme-combo .sun-link:hover { color: #fff; opacity: 1; }
-:root:not([data-bs-theme="dark"]) .theme-combo .moon-btn:hover { color: #fff; opacity: 1; }
+.theme-combo .moon-link:hover { color: #fff; opacity: 1; }
 /* The side you're on is bright, the other side dims */
 [data-bs-theme="dark"] .theme-combo .sun-link { opacity: .4; }
-:root:not([data-bs-theme="dark"]) .theme-combo .moon-btn { opacity: .4; }
+:root:not([data-bs-theme="dark"]) .theme-combo .moon-link { opacity: .4; }
 
 /* The switch itself, coloured for the navy bar.
    Its look follows the page's theme (set in <head> before anything draws), not the

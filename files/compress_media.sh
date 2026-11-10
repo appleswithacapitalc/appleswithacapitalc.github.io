@@ -1,17 +1,20 @@
 #!/bin/bash
-# Compress sunrise videos and photos for the website.
+# Compress Sunrises / Sunsets videos and photos for the website.
 #
 # Videos (.MOV / .m4v)                -> a web-friendly .mp4 next to it
 #   e.g. 2026/11-Nov/2026-11-03.MOV   -> 2026/11-Nov/2026-11-03.mp4
 # Photos (.jpg / .jpeg / .png / .heic) -> a smaller .web.jpg next to it, with location (GPS) data removed
 #   e.g. 2026/10-Oct/2026-10-20.jpeg  -> 2026/10-Oct/2026-10-20.web.jpg
 # The originals are left untouched (and git ignores them).
+# At the end it also runs strip_metadata.py (removes GPS/dates from anything pushed, saving them in
+# media_metadata.json on this computer) and fill_locations.py (fills empty "location"s from the GPS).
 #
 # Usage (from anywhere):
-#   files/sunrises/compress_media.sh               # everything in the year folders under files/sunrises
-#   files/sunrises/compress_media.sh 2026/11-Nov   # just one folder (relative to here, or a full path)
-#   files/sunrises/compress_media.sh some.MOV      # just one file
-#   files/sunrises/compress_media.sh -f            # redo files that were already compressed
+#   files/compress_media.sh                        # everything under files/sunrises and files/sunsets
+#   files/compress_media.sh sunsets                # just one of them (relative to files/, or a full path)
+#   files/compress_media.sh sunrises/2026/11-Nov   # just one folder
+#   files/compress_media.sh some.MOV               # just one file
+#   files/compress_media.sh -f                     # redo files that were already compressed
 #
 # Files that already have an up-to-date compressed copy are skipped, so it's safe to run any time.
 
@@ -38,7 +41,8 @@ for arg in "$@"; do
        else echo "Not found: $arg" >&2; exit 1; fi ;;
   esac
 done
-[ ${#TARGETS[@]} -eq 0 ] && TARGETS=("$HERE")
+FOLDERS=("$HERE/sunrises" "$HERE/sunsets")   # files sitting directly in these (e.g. page backgrounds) are skipped
+[ ${#TARGETS[@]} -eq 0 ] && TARGETS=("${FOLDERS[@]}")
 
 command -v ffmpeg >/dev/null || { echo "ffmpeg isn't installed (brew install ffmpeg)" >&2; exit 1; }
 
@@ -72,7 +76,7 @@ compress() {
     if ! ffmpeg -nostdin -v error -y -i "$in" -map 0:v:0 "${audio[@]}" \
          -vf "$vf" -c:v libx264 -preset "$PRESET" -crf "$crf" -profile:v high \
          -color_primaries bt709 -color_trc bt709 -colorspace bt709 -color_range tv \
-         -movflags +faststart "$tmp"; then
+         -map_metadata -1 -movflags +faststart "$tmp"; then
       echo "FAILED"; rm -f "$tmp"; return 1
     fi
     local mb; mb=$(size_mb "$tmp")
@@ -86,12 +90,19 @@ compress() {
 
 photo() {
   local in="$1" out="${1%.*}.web.jpg"
+  # A web copy edited by hand (e.g. a face darkened) is tagged "hand-edited" and never replaced, even with -f
+  if [ -f "$out" ] && grep -aq "hand-edited: do not overwrite" "$out"; then
+    echo "keep   $(basename "$out")  (hand-edited, left as is)"; return
+  fi
   if [ "$FORCE" -eq 0 ] && [ -f "$out" ] && [ "$out" -nt "$in" ]; then
     echo "skip   $(basename "$in")  (already done: $(size_mb "$out") MB)"; return
   fi
   # sips (built into macOS) reads HEIC, fixes rotation, shrinks and converts to normal sRGB colours.
   # ffmpeg then saves the JPEG without any metadata, so GPS location never ends up on the website.
-  local tmp="${out%.web.jpg}.tmp.png" rot=0
+  local tmp="${out%.web.jpg}.tmp.png" rot=0 fit=()
+  # Only shrink, never enlarge: small photos keep their size
+  local w h; w=$(sips -g pixelWidth "$in" | awk '/pixelWidth/{print $2}'); h=$(sips -g pixelHeight "$in" | awk '/pixelHeight/{print $2}')
+  [ "${w:-0}" -gt "$PHOTO_MAX_SIDE" ] || [ "${h:-0}" -gt "$PHOTO_MAX_SIDE" ] && fit=(-Z "$PHOTO_MAX_SIDE")
   # Phones often save photos sideways plus a "rotate me" tag; read that tag via macOS's image library
   case "$(osascript -l JavaScript -e 'ObjC.import("ImageIO"); function run(a) {
             var src = $.CGImageSourceCreateWithURL($.NSURL.fileURLWithPath(a[0]), null);
@@ -99,7 +110,7 @@ photo() {
             return (o && !o.isNil()) ? o.intValue : 1; }' "$in" 2>/dev/null)" in
     3) rot=180 ;; 6) rot=90 ;; 8) rot=270 ;;
   esac
-  if ! sips -r "$rot" -Z "$PHOTO_MAX_SIDE" -m "/System/Library/ColorSync/Profiles/sRGB Profile.icc" \
+  if ! sips -r "$rot" ${fit[@]+"${fit[@]}"} -m "/System/Library/ColorSync/Profiles/sRGB Profile.icc" \
          -s format png "$in" --out "$tmp" >/dev/null 2>&1 ||
      ! ffmpeg -nostdin -v error -y -i "$tmp" -q:v "$PHOTO_QUALITY" -pix_fmt yuvj420p -map_metadata -1 "$out"; then
     echo "FAILED $(basename "$in")"; rm -f "$tmp"; return 1
@@ -110,9 +121,10 @@ photo() {
 
 count=0
 for t in "${TARGETS[@]}"; do
-  # Skip files sitting directly in files/sunrises (e.g. the page background), and our own outputs
+  # Skip files sitting directly in files/sunrises or files/sunsets (e.g. page backgrounds), and our own outputs
   while IFS= read -r -d '' f; do
-    [ "$(dirname "$f")" = "$HERE" ] && continue
+    d="$(cd "$(dirname "$f")" && pwd)"
+    [ "$d" = "$HERE/sunrises" ] || [ "$d" = "$HERE/sunsets" ] && continue
     case "$f" in
       *.web.jpg|*.tmp.*) continue ;;
       *.[mM][oO][vV]|*.[mM]4[vV]) compress "$f" ;;
@@ -122,4 +134,9 @@ for t in "${TARGETS[@]}"; do
                                -o -iname '*.png' -o -iname '*.heic' -o -iname '*.heif' \) -print0 | sort -z)
 done
 [ "$count" -eq 0 ] && echo "No videos or photos found."
+
+# Save metadata (GPS, dates...) to media_metadata.json, remove it from everything that gets pushed,
+# then use the GPS to fill in empty "location"s in sunrises.js / sunsets.js
+echo
+"$HERE/strip_metadata.py" && "$HERE/fill_locations.py"
 exit 0

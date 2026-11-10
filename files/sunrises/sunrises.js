@@ -1,14 +1,15 @@
 // Sunrise entries. See README.md in this folder for details.
-// Kept newest first (add new ones at the top), though the page sorts by date anyway. Only "date" is required.
+// Kept newest first (add new ones at the top), though the page sorts by date anyway. Only "date" is required (YYYY-MM-DD, or YYYY-MM if you don't know the day).
 // Lines starting with // are comments and are ignored.
 // Titles show as "Sunrise #0012: your title" (just "Sunrise #0012" if title is blank). #0001 is the oldest; numbers are automatic.
 //
 // PHOTOS & VIDEOS: drop the originals (.jpeg/.HEIC/.png/.MOV) into the year/month folder, then run
-//   In Terminal:  cd ~/"Dropbox (Personal)/Website/personal" && files/sunrises/compress_media.sh
+//   In Terminal:  cd ~/"Dropbox (Personal)/Website/personal" && files/compress_media.sh
 //   Videos get a small silent .mp4 (under ~5 MB); photos get a small .web.jpg with GPS removed.
 //   On the page, videos are sped up to last ~10 s, with a "Slowed down" button for the speed they were filmed at.
 //   "speed": 1 keeps one as filmed (no button); e.g. "speed": 3 picks the speed yourself.
 //   Files already done are skipped. Settings are at the top of compress_media.sh.
+//   It also fills in an empty "location" from the photo's GPS (a place or city, never overwrites yours).
 //   Then in an entry, use the ORIGINAL file name; the page picks the small copy automatically:
 //     "photo": "2026/10-Oct/2026-10-20.jpeg",      "video": "2026/11-Nov/2026-11-03.MOV"
 //   (Either can be a list: ["a.jpeg", "b.HEIC"].) Originals stay on your computer; git ignores them.
@@ -187,7 +188,7 @@ const SUNRISES = [
   {
     "date": "2016-04-28",
     "title": "",
-    "location": "",
+    "location": "Angkor Wat, Siem Reap, Cambodia",
     "photo": "pre2026/2016-04-28.JPG",
     "text": ""
   },
@@ -195,8 +196,24 @@ const SUNRISES = [
   {
     "date": "2015-12-23",
     "title": "",
-    "location": "",
+    "location": "Mazatlán, Mexico",
     "photo": "pre2026/2015-12-23.JPG",
+    "text": ""
+  },
+
+  {
+    "date": "2014-09-01",
+    "title": "",
+    "location": "",
+    "photo": "pre2026/2014-09-01.jpeg",
+    "text": ""
+  },
+
+  {
+    "date": "2009-08",
+    "title": "",
+    "location": "",
+    "photo": "pre2026/2009-08.jpg",
     "text": ""
   },
 

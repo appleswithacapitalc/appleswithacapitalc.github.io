@@ -1,0 +1,54 @@
+/* Shared styles for the Sunrises and Sunsets pages (inner/sunrises.html, inner/sunsets.html).
+   Each page sets its own background photo in its <head>. */
+
+/* Left date sidebar: stays put below the fixed navbar while scrolling */
+#sunrise-dates {
+  top: 80px;
+  max-height: calc(100vh - 100px);   /* scroll the sidebar itself if it gets long */
+  overflow-y: auto;
+}
+#sunrise-dates .toggle {
+  display: block; width: 100%; text-align: left;
+  background: none; border: 0; padding: 0.3rem 0; cursor: pointer;
+  color: var(--sunrise-accent);
+}
+#sunrise-dates .toggle:focus { outline: none; }
+#sunrise-dates .toggle::before {
+  content: "\25B8";                   /* small right-pointing triangle */
+  display: inline-block; width: 1em;
+  transition: transform 0.2s;
+}
+#sunrise-dates .toggle[aria-expanded="true"]::before { transform: rotate(90deg); }
+#sunrise-dates .year { font-weight: bold; font-size: 1.1rem; }
+#sunrise-dates .month { padding-left: 1em; font-size: 0.95rem; }
+#sunrise-dates .list-group { margin: 0.2rem 0 0.5rem 2em; }
+#sunrise-dates .list-group-item { padding: 0.3rem 0.8rem; font-size: 0.9rem; }
+#sunrise-dates .list-group-item.active { background-color: #000444; border-color: #000444; }
+/* Leave room for the navbar when jumping to a post */
+.sunrise-post { scroll-margin-top: 100px; margin-bottom: 2rem; }
+.sunrise-post .date { color: var(--bs-secondary-color); font-size: 0.9rem; }
+
+/* Colours that change with light / dark mode */
+:root { --sunrise-accent: #000444; --sunrise-wash: rgba(248, 249, 250, 0.82); }
+[data-bs-theme="dark"] { --sunrise-accent: #8bb0fb; --sunrise-wash: rgba(26, 29, 32, 0.84); }
+
+/* Sidebar links: date and "Sunrise #" in two columns so the "Sunrise #" parts line up.
+   --date-col is set by the script below to the widest date in the whole sidebar. */
+#sunrise-dates .list-group-item { display: grid; grid-template-columns: var(--date-col, auto) 1fr; column-gap: .45em; }
+/* Sidebar links stay on solid white so they're easy to read */
+#sunrise-dates .list-group-item:not(.active) { background-color: var(--bs-body-bg); }
+/* Same text style as the bio on the homepage */
+.justified { text-align: justify; text-justify: inter-word; hyphens: auto; }
+/* Photos and videos in a post: shown side by side at a modest size, centred.
+   To make them bigger or smaller, change --media-height. Click a photo to see it full size. */
+.sunrise-media { --media-height: min(55vh, 380px);
+                 display: flex; flex-wrap: wrap; justify-content: center; gap: .5rem; padding: 1rem 1rem 0; }
+.sunrise-media img, .sunrise-media video { display: block; max-width: 100%; max-height: var(--media-height);
+                 width: auto; height: auto; border-radius: .375rem; }
+.sunrise-media video { height: var(--media-height); background: #000; }
+/* Speed button on timelapse videos (top-left corner) */
+.sunrise-vid { position: relative; max-width: 100%; }
+.speed-btn { position: absolute; top: .5rem; left: .5rem; z-index: 1;
+             font: inherit; font-size: .8rem; line-height: 1; padding: .35rem .6rem;
+             border: 0; border-radius: 1rem; background: rgba(0, 0, 0, .55); color: #fff; cursor: pointer; }
+.speed-btn:hover { background: rgba(0, 0, 0, .75); }

@@ -2,6 +2,10 @@
 
 The Sunrises page (`inner/sunrises.html`) builds itself from `sunrises.js` in this folder.
 
+The Sunsets page (`inner/sunsets.html`, linked from the moon) works exactly the same way, with
+`files/sunsets/sunsets.js` and the photos/videos in `files/sunsets/`. Both pages share
+`assets/js/sunlog.js` and `css/sunlog.css`, so a change there applies to both.
+
 ## Add a sunrise
 
 1. Put the photo in this folder, e.g. `2026-11-15.jpg`.
@@ -30,7 +34,7 @@ Put the originals (`.jpeg`, `.HEIC`, `.png`, `.MOV`) in the year/month folder, t
 
 ```
 cd ~/"Dropbox (Personal)/Website/personal"
-files/sunrises/compress_media.sh
+files/compress_media.sh
 ```
 
 - Videos get a web-friendly `.mp4` next to them, aiming for under 5 MB (starts at CRF 23 and
@@ -42,6 +46,14 @@ files/sunrises/compress_media.sh
 - Photos get a `.web.jpg` next to them: at most 2048 px, usually 0.2-0.9 MB, with location
   (GPS) data removed.
 - Originals are untouched and git ignores them, so only the small copies go online.
+- Metadata: at the end, the script removes GPS, dates and camera info from every photo/video that gets
+  pushed (`files/strip_metadata.py`). It's saved first in `media_metadata.json` in the website folder,
+  which stays on your computer (git ignores it).
+- Locations: posts with an empty `"location"` get one from the photo's GPS, e.g. `Stanley Park,
+  Vancouver, Canada` or `Madison, United States` (`files/fill_locations.py`). Your own text is never
+  changed; write `" "` to keep one blank. Hotels/resorts are skipped (just the city is used).
+- To hide something in a photo (e.g. a face), edit its `.web.jpg` and save it with the JPEG comment
+  `hand-edited: do not overwrite`. The script then never replaces it, even with `-f`.
 - Files already done are skipped, so just run it whenever you add new ones. `-f` redoes
   everything; you can also pass one folder or file. Settings are at the top of the script.
 

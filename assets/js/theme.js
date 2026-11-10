@@ -24,9 +24,5 @@
     document.querySelectorAll('.theme-switch input').forEach(function (i) {
       i.addEventListener('change', function () { choose(i.checked ? 'dark' : 'light'); });
     });
-    // The moon only turns dark mode ON (the sun is just the Sunrises link)
-    document.querySelectorAll('.moon-btn').forEach(function (b) {
-      b.addEventListener('click', function () { choose('dark'); });
-    });
   });
 })();
