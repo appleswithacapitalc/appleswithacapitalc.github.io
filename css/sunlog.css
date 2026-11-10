@@ -46,6 +46,11 @@
 .sunrise-media img, .sunrise-media video { display: block; max-width: 100%; max-height: var(--media-height);
                  width: auto; height: auto; border-radius: .375rem; }
 .sunrise-media video { height: var(--media-height); background: #000; }
+/* Photos load only as you scroll near them. Giving them a fixed height up front means the page doesn't
+   jump when they load, so the sidebar links land on the right post. object-fit keeps very wide photos
+   from stretching on narrow screens. */
+.sunrise-media img { height: var(--media-height); object-fit: contain; }
+.sunrise-media > a { max-width: 100%; }   /* so wide photos shrink to fit narrow screens */
 /* Speed button on timelapse videos (top-left corner) */
 .sunrise-vid { position: relative; max-width: 100%; }
 .speed-btn { position: absolute; top: .5rem; left: .5rem; z-index: 1;
