@@ -58,6 +58,9 @@
         background-position: center;
         background-attachment: fixed;   /* photo stays still while the page scrolls */
       }
+      /* Sidebar links: date and "Sunrise #" in two columns so the "Sunrise #" parts line up.
+         --date-col is set by the script below to the widest date in the whole sidebar. */
+      #sunrise-dates .list-group-item { display: grid; grid-template-columns: var(--date-col, auto) 1fr; column-gap: .45em; }
       /* Sidebar links stay on solid white so they're easy to read */
       #sunrise-dates .list-group-item:not(.active) { background-color: var(--bs-body-bg); }
       /* Same text style as the bio on the homepage */
@@ -69,6 +72,12 @@
       .sunrise-media img, .sunrise-media video { display: block; max-width: 100%; max-height: var(--media-height);
                        width: auto; height: auto; border-radius: .375rem; }
       .sunrise-media video { height: var(--media-height); background: #000; }
+      /* Speed button on timelapse videos (top-left corner) */
+      .sunrise-vid { position: relative; max-width: 100%; }
+      .speed-btn { position: absolute; top: .5rem; left: .5rem; z-index: 1;
+                   font: inherit; font-size: .8rem; line-height: 1; padding: .35rem .6rem;
+                   border: 0; border-radius: 1rem; background: rgba(0, 0, 0, .55); color: #fff; cursor: pointer; }
+      .speed-btn:hover { background: rgba(0, 0, 0, .75); }
     </style>
   </head>
 
@@ -118,7 +127,7 @@
                 Around October 2026, I thought about how many sunrises each of us is privy to in our lifetime. By my estimate, it's about thirty thousand (30,000) sunrises, 
                 which corresponds to an age of 82 years and 50 days, give or take. I was sad to realize this, because it somehow seemed like sunrises
                 were an infinite resource, even though logic dictates otherwise. So I am challenging myself to see three thousand (3,000) sunrises (and possibly sunsets) by the time I die, and this blog/website
-                serves as a record of my progress. I estimate I'll achieve this goal around 2040 &#128522;.
+                serves as a record of my progress. I estimate I'll achieve this goal around 2040 &#128522;. Writing each post is still a work in progress...
             </p>
 
             <div class="row">
@@ -167,6 +176,7 @@
       // You shouldn't need to edit this: add entries in ../files/sunrises/sunrises.js instead.
       (function () {
         var PHOTO_DIR  = '../files/sunrises/';
+        var VIDEO_SECONDS = 10;   // videos are sped up to last about this long (button switches to as-filmed speed)
         var MONTHS = ['January','February','March','April','May','June',
                       'July','August','September','October','November','December'];
 
@@ -190,7 +200,9 @@
           var posts = '', sidebar = '', usedIds = {};
           var lastYear = null, lastMonth = null, firstYear = true, firstMonth = true;
 
-          entries.forEach(function (e) {
+          entries.forEach(function (e, i) {
+            // Sunrise number: the oldest post is #1
+            var num = ('000' + (entries.length - i)).slice(-4);   // 23 -> "0023"
             var pad = function (n) { return (n < 10 ? '0' : '') + n; };
             var id = 'sunrise-' + e.y + '-' + pad(e.mo) + '-' + pad(e.d);
             if (usedIds[id]) { id += '-' + (++usedIds[id]); } else { usedIds[id] = 1; }
@@ -212,7 +224,7 @@
               lastMonth = e.mo; firstMonth = false; firstYear = false;
             }
             sidebar += '<a class="list-group-item list-group-item-action" href="#' + id + '">' +
-                       MONTHS[e.mo - 1].slice(0, 3) + ' ' + e.d + '</a>';
+                       '<span>' + MONTHS[e.mo - 1].slice(0, 3) + ' ' + pad(e.d) + '</span><span>Sunrise #' + num + '</span></a>';
 
             // Post card. "photo" and "video" can each be one filename or a list of filenames.
             // Photos: use the small .web.jpg copy made by compress_media.sh (e.g. 2026-10-20.jpeg -> 2026-10-20.web.jpg)
@@ -233,14 +245,17 @@
                        '<img loading="lazy" src="' + PHOTO_DIR + esc(f) +
                        '" alt="Sunrise on ' + MONTHS[e.mo - 1] + ' ' + e.d + ', ' + e.y + '"></a>';
               }).concat(videos.map(function (f) {
-                return '<video controls muted playsinline preload="metadata" src="' +
-                       PHOTO_DIR + esc(f) + '#t=0.1" aria-label="Sunrise video, ' + MONTHS[e.mo - 1] + ' ' + e.d + ', ' + e.y + '"></video>';
+                // Videos are sped up to ~VIDEO_SECONDS; "speed" in the entry overrides it ("speed": 1 = as filmed, no button)
+                return '<div class="sunrise-vid" data-speed="' + (e.speed ? +e.speed : 'auto') + '">' +
+                       '<button type="button" class="speed-btn" hidden></button>' +
+                       '<video controls muted loop playsinline preload="metadata" src="' +
+                       PHOTO_DIR + esc(f) + '#t=0.1" aria-label="Sunrise video, ' + MONTHS[e.mo - 1] + ' ' + e.d + ', ' + e.y + '"></video></div>';
               })).join('');
 
             posts += '<div class="card sunrise-post" id="' + id + '">' +
               (media ? '<div class="sunrise-media">' + media + '</div>' : '') +
               '<div class="card-body">' +
-                (e.title ? '<h4 class="card-title">' + esc(e.title) + '</h4>' : '') +
+                '<h4 class="card-title">Sunrise #' + num + (e.title ? ': ' + esc(e.title) : '') + '</h4>' +
                 '<p class="date">' + dateLine + '</p>' +
                 paras.map(function (t) { return '<p class="card-text">' + t + '</p>'; }).join('') +
               '</div></div>';
@@ -251,6 +266,10 @@
           document.getElementById('sunrise-posts').innerHTML =
             posts || '<p class="text-muted">No sunrises yet.</p>';
 
+          setUpSpeeds();
+          sizeDateColumn();
+          if (document.fonts) document.fonts.ready.then(sizeDateColumn);   // re-measure once Ageo has loaded
+
           var spy = bootstrap.ScrollSpy.getInstance(document.body);
           if (spy) spy.refresh();
           // If someone opened a link to a specific post, jump there now that it exists
@@ -258,6 +277,45 @@
             var target = document.getElementById(location.hash.slice(1));
             if (target) target.scrollIntoView();
           }
+        }
+
+        // Videos start sped up ("Normal"); the button switches to the speed they were filmed at ("Slowed down") and back.
+        // The label shows what's playing now.
+        function setUpSpeeds() {
+          document.querySelectorAll('.sunrise-vid').forEach(function (box) {
+            var v = box.querySelector('video'), btn = box.querySelector('.speed-btn'), fast = 1;
+            function setRate(rate) {
+              v.defaultPlaybackRate = rate; v.playbackRate = rate;
+              btn.textContent = rate > 1 ? 'Normal' : 'Slowed down';
+              btn.title = rate > 1 ? 'Click to watch at the speed it was filmed' : 'Click to speed back up';
+            }
+            function ready() {
+              var want = box.dataset.speed;
+              fast = want === 'auto' ? v.duration / VIDEO_SECONDS : +want;
+              fast = Math.min(fast || 1, 16);             // browsers can't go faster than 16x
+              if (fast <= 1.05) return;                   // already short, or "speed": 1: no button
+              btn.hidden = false;
+              setRate(fast);
+            }
+            btn.addEventListener('click', function () { setRate(v.playbackRate > 1 ? 1 : fast); });
+            // Browsers can reset the speed when a video loads, so apply it again
+            v.addEventListener('loadedmetadata', ready);
+            v.addEventListener('play', function () { if (!btn.hidden) v.playbackRate = v.defaultPlaybackRate; });
+            if (v.readyState >= 1) ready();
+          });
+        }
+
+        // Make the sidebar's date column as wide as the widest date, so every "Sunrise #" lines up
+        function sizeDateColumn() {
+          var box = document.getElementById('sunrise-dates'), probe = document.createElement('span'), widest = 0;
+          probe.style.cssText = 'position:absolute; visibility:hidden; white-space:nowrap;';
+          box.appendChild(probe);
+          box.querySelectorAll('.list-group-item > span:first-child').forEach(function (d) {
+            probe.textContent = d.textContent;
+            widest = Math.max(widest, probe.getBoundingClientRect().width);
+          });
+          box.removeChild(probe);
+          if (widest) box.style.setProperty('--date-col', Math.ceil(widest) + 'px');
         }
 
         function showError(msg) {
@@ -275,8 +333,18 @@
         }
 
         // When a post becomes active (scrolling or a #link), open its year and month in the sidebar
+        // and play that post's video (muted, looping); videos in other posts pause.
         document.body.addEventListener('activate.bs.scrollspy', function () {
           var link = document.querySelector('#sunrise-dates .list-group-item.active');
+          var post = link && document.getElementById(link.getAttribute('href').slice(1));
+          document.querySelectorAll('.sunrise-post video').forEach(function (v) {
+            if (post && post.contains(v)) {
+              var p = v.play();
+              if (p && p.catch) p.catch(function () {});   // browser blocked autoplay: the play button still works
+            } else if (!v.paused) {
+              v.pause();
+            }
+          });
           var section = link && link.closest('.collapse');
           while (section) {
             bootstrap.Collapse.getOrCreateInstance(section, { toggle: false }).show();

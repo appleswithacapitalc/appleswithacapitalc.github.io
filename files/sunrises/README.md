@@ -18,6 +18,9 @@ The Sunrises page (`inner/sunrises.html`) builds itself from `sunrises.js` in th
 ```
 
 - `date` is required, as `YYYY-MM-DD`. Everything else is optional; leave it `""` or delete the line.
+- Each post is titled `Sunrise #0012`, numbered automatically from the oldest (#0001). A `title` is added
+  after it, e.g. `Sunrise #0012: Foggy one`. Leave it `""` for just `Sunrise #0012`.
+- Videos play (muted, on loop) when their post is highlighted in the sidebar, and pause when you scroll on.
 - `photo` can be a list for several photos: `["a.jpg", "b.jpg"]`
 - In `text`, `\n\n` starts a new paragraph, and simple HTML works, e.g. `<a href="...">link</a>`.
 
@@ -32,6 +35,10 @@ files/sunrises/compress_media.sh
 
 - Videos get a web-friendly `.mp4` next to them, aiming for under 5 MB (starts at CRF 23 and
   steps up only if needed).
+  Sound is removed. On the page, videos are sped up to last about 10 s ("Normal"), with
+  a button (top-left) to watch at the speed they were filmed ("Slowed down"). To keep a video as filmed with
+  no button, add `"speed": 1` to its entry (or e.g. `"speed": 3` to pick the speed). The 10 s is
+  `VIDEO_SECONDS` in `inner/sunrises.html`.
 - Photos get a `.web.jpg` next to them: at most 2048 px, usually 0.2-0.9 MB, with location
   (GPS) data removed.
 - Originals are untouched and git ignores them, so only the small copies go online.

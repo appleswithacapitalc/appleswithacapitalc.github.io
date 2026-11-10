@@ -21,7 +21,7 @@ MAX_CRF=31        # if a video is over TARGET_MB, retry with CRF +2 until it fit
 TARGET_MB=5       # aim to keep each video under this many MB
 MAX_SIDE=1920     # shrink anything larger than this (pixels, longest side); never enlarges
 PRESET=slow       # x264 speed/size trade-off: slower = smaller files, same quality
-AUDIO=keep        # keep = keep sound if there is any (AAC 128k), drop = remove sound
+AUDIO=drop        # drop = remove sound (default), keep = keep sound if there is any (AAC 128k)
 PHOTO_MAX_SIDE=2048  # photos: shrink to this many pixels on the longest side
 PHOTO_QUALITY=2      # photos: 2 = best ... 6 = smaller files (ffmpeg JPEG scale, lower is better)
 # --------------------------------------------------------------------------------
@@ -92,7 +92,11 @@ photo() {
   # sips (built into macOS) reads HEIC, fixes rotation, shrinks and converts to normal sRGB colours.
   # ffmpeg then saves the JPEG without any metadata, so GPS location never ends up on the website.
   local tmp="${out%.web.jpg}.tmp.png" rot=0
-  case "$(sips -g orientation "$in" 2>/dev/null | awk '/orientation/{print $2}')" in
+  # Phones often save photos sideways plus a "rotate me" tag; read that tag via macOS's image library
+  case "$(osascript -l JavaScript -e 'ObjC.import("ImageIO"); function run(a) {
+            var src = $.CGImageSourceCreateWithURL($.NSURL.fileURLWithPath(a[0]), null);
+            var o = src ? ObjC.castRefToObject($.CGImageSourceCopyPropertiesAtIndex(src, 0, null)).objectForKey("Orientation") : null;
+            return (o && !o.isNil()) ? o.intValue : 1; }' "$in" 2>/dev/null)" in
     3) rot=180 ;; 6) rot=90 ;; 8) rot=270 ;;
   esac
   if ! sips -r "$rot" -Z "$PHOTO_MAX_SIDE" -m "/System/Library/ColorSync/Profiles/sRGB Profile.icc" \
