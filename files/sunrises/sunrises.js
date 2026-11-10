@@ -19,7 +19,7 @@ const SUNRISES = [
   {
     "date": "2026-11-10",
     "title": "",
-    "location": "",
+    "location": "Robert E. Williams Memorial Park, Pittsburgh, Pennsylvania",
     "video": "2026/11-Nov/2026-11-10.mp4",
     "text": ""
   },
@@ -27,7 +27,7 @@ const SUNRISES = [
   {
     "date": "2026-11-09",
     "title": "",
-    "location": "",
+    "location": "Robert E. Williams Memorial Park, Pittsburgh, Pennsylvania",
     "video": "2026/11-Nov/2026-11-09.mp4",
     "text": ""
   },
@@ -35,7 +35,7 @@ const SUNRISES = [
   {
     "date": "2026-11-06",
     "title": "",
-    "location": "",
+    "location": "Robert E. Williams Memorial Park, Pittsburgh, Pennsylvania",
     "video": "2026/11-Nov/2026-11-06.mp4",
     "text": ""
   },
@@ -43,7 +43,7 @@ const SUNRISES = [
   {
     "date": "2026-11-05",
     "title": "",
-    "location": "",
+    "location": "Robert E. Williams Memorial Park, Pittsburgh, Pennsylvania",
     "video": "2026/11-Nov/2026-11-05.mp4",
     "text": ""
   },
@@ -51,7 +51,7 @@ const SUNRISES = [
   {
     "date": "2026-11-04",
     "title": "",
-    "location": "",
+    "location": "Robert E. Williams Memorial Park, Pittsburgh, Pennsylvania",
     "video": "2026/11-Nov/2026-11-04.mp4",
     "text": ""
   },
@@ -59,7 +59,7 @@ const SUNRISES = [
   {
     "date": "2026-11-03",
     "title": "",
-    "location": "",
+    "location": "Robert E. Williams Memorial Park, Pittsburgh, Pennsylvania",
     "video": "2026/11-Nov/2026-11-03.mp4",
     "text": ""
   },
@@ -67,7 +67,7 @@ const SUNRISES = [
   {
     "date": "2026-11-02",
     "title": "",
-    "location": "",
+    "location": "Robert E. Williams Memorial Park, Pittsburgh, Pennsylvania",
     "video": "2026/11-Nov/2026-11-02.mp4",
     "text": ""
   },
@@ -75,7 +75,7 @@ const SUNRISES = [
   {
     "date": "2026-10-27",
     "title": "",
-    "location": "",
+    "location": "Robert E. Williams Memorial Park, Pittsburgh, Pennsylvania",
     "video": "2026/10-Oct/2026-10-27.mp4",
     "text": ""
   },
@@ -83,7 +83,7 @@ const SUNRISES = [
   {
     "date": "2026-10-20",
     "title": "",
-    "location": "",
+    "location": "Robert E. Williams Memorial Park, Pittsburgh, Pennsylvania",
     "photo": "2026/10-Oct/2026-10-20.jpeg",
     "text": ""
   },
@@ -91,7 +91,7 @@ const SUNRISES = [
   {
     "date": "2026-10-19",
     "title": "",
-    "location": "",
+    "location": "Robert E. Williams Memorial Park, Pittsburgh, Pennsylvania",
     "photo": "2026/10-Oct/2026-10-19.jpeg",
     "text": ""
   },
@@ -99,7 +99,7 @@ const SUNRISES = [
   {
     "date": "2026-10-08",
     "title": "",
-    "location": "",
+    "location": "Robert E. Williams Memorial Park, Pittsburgh, Pennsylvania",
     "photo": "2026/10-Oct/2026-10-08.jpeg",
     "text": ""
   },
@@ -107,7 +107,7 @@ const SUNRISES = [
   {
     "date": "2026-02-14",
     "title": "",
-    "location": "",
+    "location": "Salt Lake City, Utah",
     "photo": "2026/02-Feb/2026-02-14.jpeg",
     "text": ""
   },
@@ -115,7 +115,7 @@ const SUNRISES = [
   {
     "date": "2025-11-04",
     "title": "",
-    "location": "",
+    "location": "Mississauga, Ontario, Canada",
     "photo": "pre2026/2025-11-04.jpeg",
     "text": ""
   },
@@ -123,7 +123,7 @@ const SUNRISES = [
   {
     "date": "2025-08-17",
     "title": "",
-    "location": "",
+    "location": "Moraine Lake, Banff National Park, Alberta, Canada",
     "photo": "pre2026/2025-08-17.jpeg",
     "text": ""
   },
@@ -131,7 +131,7 @@ const SUNRISES = [
   {
     "date": "2025-08-08",
     "title": "",
-    "location": "",
+    "location": "Lakeside Park, Oakville, Ontario, Canada",
     "photo": "pre2026/2025-08-08.jpeg",
     "text": ""
   },
@@ -139,7 +139,7 @@ const SUNRISES = [
   {
     "date": "2025-02-16",
     "title": "",
-    "location": "",
+    "location": "Serre Chevalier, France",
     "photo": "pre2026/2025-02-16.jpeg",
     "text": ""
   },
@@ -147,7 +147,7 @@ const SUNRISES = [
   {
     "date": "2024-06-24",
     "title": "",
-    "location": "",
+    "location": "Flight from Vancouver (YVR) to Toronto (YYZ)",
     "video": "pre2026/2024-06-24.mp4",
     "text": ""
   },
@@ -155,7 +155,7 @@ const SUNRISES = [
   {
     "date": "2024-06-16",
     "title": "",
-    "location": "",
+    "location": "Emsdale Lake, Kearney, Ontario, Canada",
     "video": "pre2026/2024-06-16.mp4",
     "speed": 1,
     "text": ""
@@ -164,7 +164,7 @@ const SUNRISES = [
   {
     "date": "2023-10-15",
     "title": "",
-    "location": "",
+    "location": "Nice, France",
     "video": "pre2026/2023-10-15.mp4",
     "text": ""
   },
@@ -172,7 +172,7 @@ const SUNRISES = [
   {
     "date": "2023-10-09",
     "title": "",
-    "location": "",
+    "location": "Neuchâtel, Switzerland",
     "photo": "pre2026/2023-10-09.jpeg",
     "text": ""
   },
@@ -180,7 +180,7 @@ const SUNRISES = [
   {
     "date": "2022-09-22",
     "title": "",
-    "location": "",
+    "location": "On a plane over Toronto, Ontario, Canada",
     "photo": "pre2026/2022-09-22.jpg",
     "text": ""
   },
@@ -204,7 +204,7 @@ const SUNRISES = [
   {
     "date": "2014-09-01",
     "title": "",
-    "location": "",
+    "location": "Évian, France",
     "photo": "pre2026/2014-09-01.jpeg",
     "text": ""
   },
@@ -212,7 +212,7 @@ const SUNRISES = [
   {
     "date": "2009-08",
     "title": "",
-    "location": "",
+    "location": "Somewhere in Belgium",
     "photo": "pre2026/2009-08.jpg",
     "text": ""
   },

@@ -47,6 +47,9 @@ while let line = readLine() {
 
 def gps_of(entry):
     """Latitude/longitude from a media_metadata.json entry (original first), or None."""
+    t = entry.get('takeout')                     # found by import_takeout.py (Google Takeout)
+    if t and (t.get('latitude') or t.get('longitude')):
+        return t['latitude'], t['longitude']
     for key in ('original_metadata', 'metadata'):
         m = entry.get(key) or {}
         g = m.get('{GPS}')

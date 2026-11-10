@@ -397,6 +397,7 @@ const SUNSETS = [
     "title": "",
     "location": "Koto, Japan",
     "video": "pre2026/2019-05-17.mp4",
+    "speed": 1,
     "text": ""
   },
 
