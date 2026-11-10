@@ -1,19 +1,22 @@
 #!/bin/bash
 # Compress Sunrises / Sunsets videos and photos for the website.
 #
-# Videos (.MOV / .m4v)                -> a web-friendly .mp4 next to it
-#   e.g. 2026/11-Nov/2026-11-03.MOV   -> 2026/11-Nov/2026-11-03.mp4
-# Photos (.jpg / .jpeg / .png / .heic) -> a smaller .web.jpg next to it, with location (GPS) data removed
-#   e.g. 2026/10-Oct/2026-10-20.jpeg  -> 2026/10-Oct/2026-10-20.web.jpg
-# The originals are left untouched (and git ignores them).
-# At the end it also runs strip_metadata.py (removes GPS/dates from anything pushed, saving them in
-# media_metadata.json on this computer) and fill_locations.py (fills empty "location"s from the GPS).
+# Drop new originals (.jpeg / .HEIC / .png / .MOV) into files/sunrises/... or files/sunsets/... as usual.
+# This script then:
+#   1. moves every original into the matching place under originals/ (in the website folder;
+#      git ignores it, so originals never go to GitHub)
+#        files/sunrises/2026/11-Nov/2026-11-03.MOV  ->  originals/sunrises/2026/11-Nov/2026-11-03.MOV
+#   2. makes the web copies back in files/:
+#        videos -> .mp4       e.g. files/sunrises/2026/11-Nov/2026-11-03.mp4
+#        photos -> .web.jpg   e.g. files/sunrises/2026/10-Oct/2026-10-20.web.jpg (location data removed)
+#   3. runs strip_metadata.py (removes GPS/dates from anything pushed, saving them in media_metadata.json
+#      on this computer) and fill_locations.py (fills empty "location"s from the GPS)
+# Files directly in files/sunrises or files/sunsets (the page backgrounds) are left alone.
 #
 # Usage (from anywhere):
-#   files/compress_media.sh                        # everything under files/sunrises and files/sunsets
-#   files/compress_media.sh sunsets                # just one of them (relative to files/, or a full path)
+#   files/compress_media.sh                        # everything
+#   files/compress_media.sh sunsets                # just one of them
 #   files/compress_media.sh sunrises/2026/11-Nov   # just one folder
-#   files/compress_media.sh some.MOV               # just one file
 #   files/compress_media.sh -f                     # redo files that were already compressed
 #
 # Files that already have an up-to-date compressed copy are skipped, so it's safe to run any time.
@@ -30,26 +33,54 @@ PHOTO_QUALITY=2      # photos: 2 = best ... 6 = smaller files (ffmpeg JPEG scale
 # --------------------------------------------------------------------------------
 
 set -u
-HERE="$(cd "$(dirname "$0")" && pwd)"
+HERE="$(cd "$(dirname "$0")" && pwd)"          # .../personal/files
+ORIG="$(dirname "$HERE")/originals"             # .../personal/originals (not pushed)
 FORCE=0
-TARGETS=()
+ARGS=()
 for arg in "$@"; do
   case "$arg" in
     -f|--force) FORCE=1 ;;
-    -h|--help) sed -n '2,18p' "$0"; exit 0 ;;
-    *) if [ -e "$arg" ]; then TARGETS+=("$arg"); elif [ -e "$HERE/$arg" ]; then TARGETS+=("$HERE/$arg");
-       else echo "Not found: $arg" >&2; exit 1; fi ;;
+    -h|--help) sed -n '2,24p' "$0"; exit 0 ;;
+    *) ARGS+=("$arg") ;;
   esac
 done
-FOLDERS=("$HERE/sunrises" "$HERE/sunsets")   # files sitting directly in these (e.g. page backgrounds) are skipped
-[ ${#TARGETS[@]} -eq 0 ] && TARGETS=("${FOLDERS[@]}")
 
 command -v ffmpeg >/dev/null || { echo "ffmpeg isn't installed (brew install ffmpeg)" >&2; exit 1; }
+
+is_original() {   # photos/videos that aren't one of our web copies
+  case "$1" in
+    *.web.jpg|*.tmp.*|*.mp4) return 1 ;;
+    *.[jJ][pP][gG]|*.[jJ][pP][eE][gG]|*.[pP][nN][gG]|*.[hH][eE][iI][cC]|*.[hH][eE][iI][fF]|*.[mM][oO][vV]|*.[mM]4[vV]) return 0 ;;
+  esac
+  return 1
+}
+
+# 1. Move new originals out of files/ into originals/ (same folders), keeping their dates
+for top in sunrises sunsets; do
+  [ -d "$HERE/$top" ] || continue
+  while IFS= read -r -d '' f; do
+    is_original "$f" || continue
+    dest="$ORIG/${f#$HERE/}"
+    if [ -e "$dest" ]; then echo "NOTE   $(basename "$f") is already in originals/; left where it is" >&2; continue; fi
+    mkdir -p "$(dirname "$dest")" && mv "$f" "$dest" && echo "moved  ${f#$HERE/}  ->  originals/"
+  done < <(find "$HERE/$top" -mindepth 2 -type f -print0 | sort -z)
+done
+
+# What to process: everything in originals/, or the folders/files given (as files/... or originals/... paths)
+TARGETS=()
+for arg in ${ARGS[@]+"${ARGS[@]}"}; do
+  a="$arg"; [ -e "$a" ] && a="$(cd "$(dirname "$a")" && pwd)/$(basename "$a")"
+  case "$a" in "$HERE"/*) a="$ORIG/${a#$HERE/}" ;; esac
+  if [ -e "$a" ]; then TARGETS+=("$a"); elif [ -e "$ORIG/$arg" ]; then TARGETS+=("$ORIG/$arg");
+  else echo "Not found: $arg" >&2; exit 1; fi
+done
+[ ${#TARGETS[@]} -eq 0 ] && for top in sunrises sunsets; do [ -d "$ORIG/$top" ] && TARGETS+=("$ORIG/$top"); done
+web_of() { local rel="${1#$ORIG/}"; echo "$HERE/${rel%.*}$2"; }   # originals/x/y.HEIC -> files/x/y.web.jpg
 
 size_mb() { awk -v b="$(stat -f%z "$1")" 'BEGIN { printf "%.1f", b / 1048576 }'; }
 
 compress() {
-  local in="$1" out="${1%.*}.mp4"
+  local in="$1" out; out="$(web_of "$1" .mp4)"; mkdir -p "$(dirname "$out")"
   if [ "$FORCE" -eq 0 ] && [ -f "$out" ] && [ "$out" -nt "$in" ]; then
     echo "skip   $(basename "$in")  (already done: $(size_mb "$out") MB)"; return
   fi
@@ -89,7 +120,7 @@ compress() {
 }
 
 photo() {
-  local in="$1" out="${1%.*}.web.jpg"
+  local in="$1" out; out="$(web_of "$1" .web.jpg)"; mkdir -p "$(dirname "$out")"
   # A web copy edited by hand (e.g. a face darkened) is tagged "hand-edited" and never replaced, even with -f
   if [ -f "$out" ] && grep -aq "hand-edited: do not overwrite" "$out"; then
     echo "keep   $(basename "$out")  (hand-edited, left as is)"; return
@@ -119,23 +150,21 @@ photo() {
   echo "done   $(basename "$out")  $(size_mb "$in") MB -> $(size_mb "$out") MB"
 }
 
+# 2. Make the web copies
 count=0
-for t in "${TARGETS[@]}"; do
-  # Skip files sitting directly in files/sunrises or files/sunsets (e.g. page backgrounds), and our own outputs
+for t in ${TARGETS[@]+"${TARGETS[@]}"}; do
   while IFS= read -r -d '' f; do
-    d="$(cd "$(dirname "$f")" && pwd)"
-    [ "$d" = "$HERE/sunrises" ] || [ "$d" = "$HERE/sunsets" ] && continue
+    is_original "$f" || continue
+    [ "$(dirname "$f")" = "$ORIG/sunrises" ] || [ "$(dirname "$f")" = "$ORIG/sunsets" ] && continue
     case "$f" in
-      *.web.jpg|*.tmp.*) continue ;;
       *.[mM][oO][vV]|*.[mM]4[vV]) compress "$f" ;;
       *) photo "$f" ;;
     esac && count=$((count + 1))
-  done < <(find "$t" -type f \( -iname '*.mov' -o -iname '*.m4v' -o -iname '*.jpg' -o -iname '*.jpeg' \
-                               -o -iname '*.png' -o -iname '*.heic' -o -iname '*.heif' \) -print0 | sort -z)
+  done < <(find "$t" -type f -print0 | sort -z)
 done
 [ "$count" -eq 0 ] && echo "No videos or photos found."
 
-# Save metadata (GPS, dates...) to media_metadata.json, remove it from everything that gets pushed,
+# 3. Save metadata (GPS, dates...) to media_metadata.json, remove it from everything that gets pushed,
 # then use the GPS to fill in empty "location"s in sunrises.js / sunsets.js
 echo
 "$HERE/strip_metadata.py" && "$HERE/fill_locations.py"

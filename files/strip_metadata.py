@@ -12,7 +12,7 @@ compress_media.sh runs this automatically at the end.
 - MP4 / MOV: metadata is removed without re-encoding.
 - HEIC can't be cleaned this way; the script lists any it finds (convert them to .jpg instead).
 - For .web.jpg / .mp4 copies made by compress_media.sh, the metadata of your original
-  (e.g. the .jpeg / .MOV next to it) is saved too, since that's the interesting one.
+  (in originals/, or next to it) is saved too, since that's the interesting one.
 """
 import json, os, struct, subprocess, sys, tempfile
 
@@ -145,10 +145,15 @@ def strip_video(path):
 def original_of(path):
     """For a compress_media.sh copy (x.web.jpg / x.mp4), the original next to it, if it's still there."""
     stem = path[:-len('.web.jpg')] if path.endswith('.web.jpg') else os.path.splitext(path)[0]
-    for ext in ORIGINAL_EXT:
-        p = stem + ext
-        if p != path and os.path.exists(p):
-            return p
+    stems = [stem]
+    files_dir = os.path.join(ROOT, 'files') + os.sep
+    if stem.startswith(files_dir):                 # originals now live in originals/, same folders
+        stems.insert(0, os.path.join(ROOT, 'originals', stem[len(files_dir):]))
+    for st in stems:
+        for ext in ORIGINAL_EXT:
+            p = st + ext
+            if p != path and os.path.exists(p):
+                return p
     return None
 
 

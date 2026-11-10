@@ -12,7 +12,8 @@
 //   It also fills in an empty "location" from the photo's GPS (a place or city, never overwrites yours).
 //   Then in an entry, use the ORIGINAL file name; the page picks the small copy automatically:
 //     "photo": "2026/10-Oct/2026-10-20.jpeg",      "video": "2026/11-Nov/2026-11-03.MOV"
-//   (Either can be a list: ["a.jpeg", "b.HEIC"].) Originals stay on your computer; git ignores them.
+//   (Either can be a list: ["a.jpeg", "b.HEIC"].) The script moves originals into originals/ (same folders),
+//   which stays on your computer: git ignores it.
 
 const SUNRISES = [
 
@@ -162,6 +163,14 @@ const SUNRISES = [
   },
 
   {
+    "date": "2023-12-21",
+    "title": "",
+    "location": "",
+    "photo": "pre2026/2023-12-21.jpeg",
+    "text": ""
+  },
+
+  {
     "date": "2023-10-15",
     "title": "",
     "location": "Nice, France",
@@ -170,10 +179,34 @@ const SUNRISES = [
   },
 
   {
+    "date": "2023-10-12",
+    "title": "",
+    "location": "",
+    "photo": "pre2026/2023-10-12.HEIC",
+    "text": ""
+  },
+
+  {
     "date": "2023-10-09",
     "title": "",
     "location": "Neuchâtel, Switzerland",
     "photo": "pre2026/2023-10-09.jpeg",
+    "text": ""
+  },
+
+  {
+    "date": "2023-10-08",
+    "title": "",
+    "location": "",
+    "photo": "pre2026/2023-10-08.HEIC",
+    "text": ""
+  },
+
+  {
+    "date": "2023-10-02",
+    "title": "",
+    "location": "Montmartre Cemetery, Paris, France",
+    "photo": "pre2026/2023-10-02.HEIC",
     "text": ""
   },
 

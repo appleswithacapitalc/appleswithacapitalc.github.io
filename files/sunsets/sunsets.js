@@ -12,7 +12,8 @@
 //   It also fills in an empty "location" from the photo's GPS (a place or city, never overwrites yours).
 //   Then in an entry, use the ORIGINAL file name; the page picks the small copy automatically:
 //     "photo": "2026/2026-10-27.jpeg",      "video": "pre2026/2019-05-17.MOV"
-//   (Either can be a list: ["a.jpeg", "b.HEIC"].) Originals stay on your computer; git ignores them.
+//   (Either can be a list: ["a.jpeg", "b.HEIC"].) The script moves originals into originals/ (same folders),
+//   which stays on your computer: git ignores it.
 
 const SUNSETS = [
 
@@ -27,7 +28,7 @@ const SUNSETS = [
   {
     "date": "2026-11-05",
     "title": "",
-    "location": "",
+    "location": "Cathedral of Learning, Pittsburgh, Pennsylvania",
     "photo": "2026/2026-11-05.jpeg",
     "text": ""
   },
@@ -43,7 +44,7 @@ const SUNSETS = [
   {
     "date": "2026-10-09",
     "title": "",
-    "location": "",
+    "location": "Pittsburgh, Pennsylvania",
     "photo": "2026/2026-10-09.jpeg",
     "text": ""
   },
@@ -67,7 +68,7 @@ const SUNSETS = [
   {
     "date": "2026-08-26",
     "title": "",
-    "location": "",
+    "location": "Pittsburgh, Pennsylvania",
     "photo": "2026/2026-08-26.jpeg",
     "text": ""
   },
@@ -81,10 +82,26 @@ const SUNSETS = [
   },
 
   {
-    "date": "2026-05-15",
+    "date": "2026-07-11",
     "title": "",
     "location": "",
+    "photo": "2026/2026-07-11.HEIC",
+    "text": ""
+  },
+
+  {
+    "date": "2026-05-15",
+    "title": "",
+    "location": "Pittsburgh, Pennsylvania",
     "photo": "2026/2026-05-15.jpeg",
+    "text": ""
+  },
+
+  {
+    "date": "2026-04-09",
+    "title": "",
+    "location": "Schenley Plaza, Pittsburgh, Pennsylvania",
+    "photo": "2026/2026-04-09.HEIC",
     "text": ""
   },
 
@@ -93,6 +110,30 @@ const SUNSETS = [
     "title": "",
     "location": "",
     "photo": "2026/2026-03-08.jpeg",
+    "text": ""
+  },
+
+  {
+    "date": "2025-10-04",
+    "title": "",
+    "location": "",
+    "photo": "pre2026/2025-10-04.HEIC",
+    "text": ""
+  },
+
+  {
+    "date": "2025-08-18",
+    "title": "",
+    "location": "",
+    "photo": "pre2026/2025-08-18.HEIC",
+    "text": ""
+  },
+
+  {
+    "date": "2025-08-16",
+    "title": "",
+    "location": "Lake Louise, Alberta",
+    "photo": "pre2026/2025-08-16.HEIC",
     "text": ""
   },
 
@@ -113,6 +154,14 @@ const SUNSETS = [
   },
 
   {
+    "date": "2025-04-12",
+    "title": "",
+    "location": "",
+    "photo": "pre2026/2025-04-12.HEIC",
+    "text": ""
+  },
+
+  {
     "date": "2025-02-28",
     "title": "",
     "location": "",
@@ -121,9 +170,17 @@ const SUNSETS = [
   },
 
   {
-    "date": "2025-02-21",
+    "date": "2025-02-25",
     "title": "",
     "location": "",
+    "photo": "pre2026/2025-02-25.HEIC",
+    "text": ""
+  },
+
+  {
+    "date": "2025-02-21",
+    "title": "",
+    "location": "Vittoriano, Rome, Italy",
     "photo": "pre2026/2025-02-21.jpeg",
     "text": ""
   },
@@ -155,7 +212,7 @@ const SUNSETS = [
   {
     "date": "2024-08-21",
     "title": "",
-    "location": "",
+    "location": "Toronto, Ontario",
     "photo": "pre2026/2024-08-21.jpeg",
     "text": ""
   },
@@ -163,7 +220,7 @@ const SUNSETS = [
   {
     "date": "2024-07-03",
     "title": "",
-    "location": "",
+    "location": "Riverdale Park East, Toronto, Ontario",
     "photo": "pre2026/2024-07-03.jpeg",
     "text": ""
   },
@@ -171,7 +228,7 @@ const SUNSETS = [
   {
     "date": "2024-07-01",
     "title": "",
-    "location": "",
+    "location": "Riverdale Park East, Toronto, Ontario",
     "photo": "pre2026/2024-07-01.jpeg",
     "text": ""
   },
@@ -185,10 +242,18 @@ const SUNSETS = [
   },
 
   {
-    "date": "2023-12-21",
+    "date": "2024-04-16",
+    "title": "",
+    "location": "University of Toronto, Toronto, Ontario",
+    "photo": "pre2026/2024-04-16.HEIC",
+    "text": ""
+  },
+
+  {
+    "date": "2024-03-21",
     "title": "",
     "location": "",
-    "photo": "pre2026/2023-12-21.jpeg",
+    "photo": "pre2026/2024-03-21.HEIC",
     "text": ""
   },
 
@@ -203,7 +268,7 @@ const SUNSETS = [
   {
     "date": "2023-10-14",
     "title": "",
-    "location": "",
+    "location": "Nice, France",
     "photo": "pre2026/2023-10-14.jpeg",
     "text": ""
   },
@@ -217,10 +282,34 @@ const SUNSETS = [
   },
 
   {
-    "date": "2023-09-29",
+    "date": "2023-10-03",
     "title": "",
     "location": "",
+    "photo": "pre2026/2023-10-03.HEIC",
+    "text": ""
+  },
+
+  {
+    "date": "2023-09-29",
+    "title": "",
+    "location": "On a plane over Toronto, Ontario",
     "photo": "pre2026/2023-09-29.jpeg",
+    "text": ""
+  },
+
+  {
+    "date": "2023-09-11",
+    "title": "",
+    "location": "",
+    "photo": "pre2026/2023-09-11.HEIC",
+    "text": ""
+  },
+
+  {
+    "date": "2023-08-27",
+    "title": "",
+    "location": "",
+    "photo": "pre2026/2023-08-27.HEIC",
     "text": ""
   },
 
@@ -243,7 +332,7 @@ const SUNSETS = [
   {
     "date": "2023-07-07",
     "title": "",
-    "location": "",
+    "location": "Toronto, Ontario",
     "photo": "pre2026/2023-07-07.jpeg",
     "text": ""
   },
@@ -259,7 +348,7 @@ const SUNSETS = [
   {
     "date": "2022-10-01",
     "title": "",
-    "location": "",
+    "location": "Niagara Falls, Ontario",
     "photo": "pre2026/2022-10-01.jpg",
     "text": ""
   },
@@ -331,7 +420,7 @@ const SUNSETS = [
   {
     "date": "2020-08-21",
     "title": "",
-    "location": "",
+    "location": "Toronto, Ontario",
     "photo": "pre2026/2020-08-21.jpg",
     "text": ""
   },

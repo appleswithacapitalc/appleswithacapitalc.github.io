@@ -14,3 +14,5 @@ files/sunsets/*/**/*.png
 !files/sunsets/**/*.web.jpg
 # Photo/video metadata saved by files/strip_metadata.py (GPS, dates): stays on this computer only
 media_metadata.json
+# Original photos/videos (full size, with GPS): compress_media.sh moves them here; never pushed
+/originals/

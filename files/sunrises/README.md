@@ -45,7 +45,8 @@ files/compress_media.sh
   `VIDEO_SECONDS` in `inner/sunrises.html`.
 - Photos get a `.web.jpg` next to them: at most 2048 px, usually 0.2-0.9 MB, with location
   (GPS) data removed.
-- Originals are untouched and git ignores them, so only the small copies go online.
+- Originals are then moved, untouched, into `originals/` in the website folder (same year/month
+  folders). Git ignores that folder, so only the small copies go online.
 - Metadata: at the end, the script removes GPS, dates and camera info from every photo/video that gets
   pushed (`files/strip_metadata.py`). It's saved first in `media_metadata.json` in the website folder,
   which stays on your computer (git ignores it).
