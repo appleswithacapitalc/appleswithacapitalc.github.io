@@ -10,7 +10,8 @@
 #        videos -> .mp4       e.g. files/sunrises/2026/11-Nov/2026-11-03.mp4
 #        photos -> .web.jpg   e.g. files/sunrises/2026/10-Oct/2026-10-20.web.jpg (location data removed)
 #   3. runs strip_metadata.py (removes GPS/dates from anything pushed, saving them in media_metadata.json
-#      on this computer) and fill_locations.py (fills empty "location"s from the GPS)
+#      on this computer) and fill_locations.py (fills empty "location"s from the GPS),
+#      then version_assets.py (so visitors' browsers load the updated sunrises.js / sunsets.js)
 # Files directly in files/sunrises or files/sunsets (the page backgrounds) are left alone.
 #
 # Usage (from anywhere):
@@ -167,5 +168,5 @@ done
 # 3. Save metadata (GPS, dates...) to media_metadata.json, remove it from everything that gets pushed,
 # then use the GPS to fill in empty "location"s in sunrises.js / sunsets.js
 echo
-"$HERE/strip_metadata.py" && "$HERE/fill_locations.py"
+"$HERE/strip_metadata.py" && "$HERE/fill_locations.py" && "$HERE/version_assets.py"
 exit 0

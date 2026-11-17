@@ -9,7 +9,7 @@
     <title>Sunrises · Mian Wei</title>
 
     <!-- Tab icon -->
-    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="../assets/favicon.svg?v=8c5323a3" type="image/svg+xml">
     <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
     <!-- Preview card when the link is shared (iMessage, Slack, LinkedIn, ...) -->
     <meta property="og:type" content="website">
@@ -21,13 +21,13 @@
     <meta name="twitter:card" content="summary_large_image">
 
     <!-- Bootstrap core CSS -->
-    <script src="../assets/js/theme.js"></script>
-    <link href="../dist/bootstrap-5.3.8/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../css/stylesheet.css" rel="stylesheet">
+    <script src="../assets/js/theme.js?v=ff6a2148"></script>
+    <link href="../dist/bootstrap-5.3.8/css/bootstrap.min.css?v=1b1cb0e2" rel="stylesheet">
+    <link href="../css/stylesheet.css?v=f15a1bd0" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="sticky-footer-navbar.css" rel="stylesheet">
-    <link href="../css/sunlog.css" rel="stylesheet">
+    <link href="sticky-footer-navbar.css?v=0a36ca94" rel="stylesheet">
+    <link href="../css/sunlog.css?v=49a2603c" rel="stylesheet">
     <style>
       /* Washed-out photo background. To make it fainter or stronger, change --sunrise-wash in css/sunlog.css
          (1 = plain light grey, 0 = full-strength photo). */
@@ -125,15 +125,15 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="../dist/bootstrap-5.3.8/js/bootstrap.bundle.min.js"></script>
+    <script src="../dist/bootstrap-5.3.8/js/bootstrap.bundle.min.js?v=5cc1b73e"></script>
     <script>
       // Remember any typo in the data file so the page can say where it is
       window.addEventListener('error', function (ev) {
         if (ev.filename && ev.filename.indexOf('/files/') !== -1) window.SUNLOG_ERROR = ev.message + ' (line ' + ev.lineno + ')';
       });
     </script>
-    <script src="../files/sunrises/sunrises.js"></script>
-    <script src="../assets/js/sunlog.js"></script>
+    <script src="../files/sunrises/sunrises.js?v=4a04d0e4"></script>
+    <script src="../assets/js/sunlog.js?v=ca948c31"></script>
     <script>
       // Builds the sidebar and posts. To add a sunrise, edit ../files/sunrises/sunrises.js, not this page.
       SunLog({ data: typeof SUNRISES !== 'undefined' && SUNRISES, name: 'Sunrise', dir: '../files/sunrises/', file: 'sunrises.js' });
