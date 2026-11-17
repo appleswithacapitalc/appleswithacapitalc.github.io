@@ -16,6 +16,13 @@
   function choose(t) { save(t); apply(t); }
 
   apply(current());
+
+  // On the first page of a visit, the sun and moon in the navbar glow once to show they're links
+  // (see .hint-glow in css/stylesheet.css). Clicking around the site doesn't replay it.
+  var firstPage = true;
+  try { firstPage = !sessionStorage.getItem('sunHint'); sessionStorage.setItem('sunHint', '1'); } catch (e) {}
+  if (firstPage) document.documentElement.classList.add('hint-glow');
+
   // If they haven't chosen, follow the device when it changes (e.g. at sunset)
   systemDark.addEventListener('change', function () { if (!saved()) apply(current()); });
 
