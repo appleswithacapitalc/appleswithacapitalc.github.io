@@ -4,14 +4,14 @@
 Usage (from anywhere):   files/version_assets.py
 Run it before committing whenever a .css / .js file (including sunrises.js / sunsets.js) has changed.
 
-Each page's links to the site's own .css / .js / icon files get a tag based on the file's contents:
+Each page's links to the site's own .css / .js / icon / .png files get a tag based on the file's contents:
     <link href="css/stylesheet.css?v=3f9a1c2e">
 When a file changes, its tag changes, so browsers download the new version; unchanged files stay cached.
 """
 import hashlib, os, re, subprocess, sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-LINK = re.compile(r'((?:href|src)=")([^"?#:]+\.(?:css|js|svg))(?:\?v=[0-9a-f]*)?(")')
+LINK = re.compile(r'((?:href|src)=")([^"?#:]+\.(?:css|js|svg|png))(?:\?v=[0-9a-f]*)?(")')
 
 
 def main():
