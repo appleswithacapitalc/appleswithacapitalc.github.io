@@ -84,14 +84,14 @@
                     <!-- Bio photo: picked at random from files/portrait/portraits.js (edit that file to add photos) -->
                     <figure class="bio-photo">
                       <img id="bio-img" class="img-fluid" alt="Mian Wei at Moraine Lake">
-                      <figcaption id="bio-caption">2025: Moraine Lake, Alberta</figcaption>
+                      <figcaption id="bio-caption">2025: Moraine Lake, Banff</figcaption>
                       <noscript><img src="files/portrait/2025_mian_banff.jpg" class="img-fluid" alt="Mian Wei at Moraine Lake"></noscript>
                     </figure>
-                    <script src="files/portrait/portraits.js?v=2865f8ad"></script>
+                    <script src="files/portrait/portraits.js?v=98411e66"></script>
                     <script>
                       (function () {
                         var list = (typeof PORTRAITS !== 'undefined' && PORTRAITS.length) ? PORTRAITS
-                                 : [{ photo: '2025_mian_banff.jpg', caption: '2025: Moraine Lake, Alberta' }];
+                                 : [{ photo: '2025_mian_banff.jpg', caption: '2025: Moraine Lake, Banff' }];
                         // Usually the "default" photo; sometimes (PORTRAIT_OTHER_CHANCE) one of the others
                         var chance = typeof PORTRAIT_OTHER_CHANCE === 'number' ? PORTRAIT_OTHER_CHANCE : 0.2;
                         var main = list.filter(function (x) { return x['default']; })[0] || list[0];
