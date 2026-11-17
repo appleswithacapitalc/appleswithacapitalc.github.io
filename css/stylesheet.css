@@ -247,6 +247,9 @@ hr { opacity: 0.1; }
 .theme-combo svg { display: block; height: 100%; width: auto; }
 .theme-combo .sun-link:hover { color: #fff; opacity: 1; }
 .theme-combo .moon-link:hover { color: #fff; opacity: 1; }
+/* Hovering "sunrises" / "sunsets" in the bio lights up the sun / moon in the navbar */
+body:has(.hint-sun:hover) .theme-combo .sun-link,
+body:has(.hint-moon:hover) .theme-combo .moon-link { color: #fff; opacity: 1; }
 /* The side you're on is bright, the other side dims */
 [data-bs-theme="dark"] .theme-combo .sun-link { opacity: .4; }
 :root:not([data-bs-theme="dark"]) .theme-combo .moon-link { opacity: .4; }
