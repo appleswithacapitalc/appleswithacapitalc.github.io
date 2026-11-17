@@ -19,9 +19,19 @@
   transition: transform 0.2s;
 }
 #sunrise-dates .toggle[aria-expanded="true"]::before { transform: rotate(90deg); }
-#sunrise-dates .year { font-weight: bold; font-size: 1.1rem; }
-#sunrise-dates .month { padding-left: 1em; font-size: 0.95rem; }
-#sunrise-dates .list-group { margin: 0.2rem 0 0.5rem 2em; }
+#sunrise-dates .decade { font-weight: bold; font-size: 1.2rem; }
+#sunrise-dates .year { padding-left: 1em; font-weight: bold; font-size: 1.05rem; }
+#sunrise-dates .month { padding-left: 2em; font-size: 0.95rem; }
+#sunrise-dates .list-group { margin: 0.2rem 0 0.5rem 3em; }
+/* "Expand all / Collapse all" at the top of the sidebar; stays visible while the sidebar scrolls */
+#sunrise-dates .sidebar-tools {
+  position: sticky; top: 0; z-index: 2; display: flex; gap: .4rem; padding-bottom: .4rem;
+}
+#sunrise-dates .sidebar-tools button {
+  font: inherit; font-size: .8rem; line-height: 1; padding: .35rem .6rem; cursor: pointer;
+  border: 1px solid var(--sunrise-accent); border-radius: 1rem; background: var(--bs-body-bg); color: var(--sunrise-accent);
+}
+#sunrise-dates .sidebar-tools button:hover { background: var(--sunrise-accent); color: var(--bs-body-bg); }
 #sunrise-dates .list-group-item { padding: 0.3rem 0.8rem; font-size: 0.9rem; }
 #sunrise-dates .list-group-item.active { background-color: #000444; border-color: #000444; }
 /* Leave room for the navbar when jumping to a post */

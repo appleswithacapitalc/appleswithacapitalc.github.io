@@ -31,7 +31,7 @@ function SunLog(opts) {
     entries.sort(function (a, b) { return (b.y - a.y) || (b.mo - a.mo) || (b.d - a.d); });
 
     var posts = '', sidebar = '', usedIds = {}, jump = [];
-    var lastYear = null, lastMonth = null, firstYear = true, firstMonth = true;
+    var lastDecade = null, lastYear = null, lastMonth = null, firstYear = true, firstMonth = true;
 
     entries.forEach(function (e, i) {
       // Post number: the oldest post is #1
@@ -41,7 +41,15 @@ function SunLog(opts) {
       var dateText = MONTHS[e.mo - 1] + (e.d ? ' ' + e.d + ',' : '') + ' ' + e.y;   // "August 9, 2009" or "August 2009"
       if (usedIds[id]) { id += '-' + (++usedIds[id]); } else { usedIds[id] = 1; }
 
-      // Sidebar: open a new year / month group when it changes. Newest year & month start open.
+      // Sidebar: decade > year > month. Open a new group when it changes; the newest of each starts open.
+      var decade = Math.floor(e.y / 10) * 10;
+      if (decade !== lastDecade) {
+        if (lastYear !== null) sidebar += '</div></div></div></div>';   // close month, year and decade
+        sidebar += '<button type="button" class="toggle decade' + (firstYear ? '' : ' collapsed') +
+                   '" data-bs-toggle="collapse" data-bs-target="#d' + decade + '" aria-expanded="' + firstYear + '">' + decade + 's</button>' +
+                   '<div class="collapse' + (firstYear ? ' show' : '') + '" id="d' + decade + '">';
+        lastDecade = decade; lastYear = null;
+      }
       if (e.y !== lastYear) {
         if (lastYear !== null) sidebar += '</div></div></div>';
         sidebar += '<button type="button" class="toggle year' + (firstYear ? '' : ' collapsed') +
@@ -97,9 +105,21 @@ function SunLog(opts) {
           paras.map(function (t) { return '<p class="card-text">' + t + '</p>'; }).join('') +
         '</div></div>';
     });
-    if (lastYear !== null) sidebar += '</div></div></div>';
+    if (lastYear !== null) sidebar += '</div></div></div></div>';
 
-    document.getElementById('sunrise-dates').innerHTML = sidebar;
+    document.getElementById('sunrise-dates').innerHTML =
+      '<div class="sidebar-tools">' +
+        '<button type="button" data-all="show">Expand all</button>' +
+        '<button type="button" data-all="hide">Collapse all</button>' +
+      '</div>' + sidebar;
+    document.querySelectorAll('#sunrise-dates [data-all]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var how = btn.dataset.all;
+        document.querySelectorAll('#sunrise-dates .collapse').forEach(function (c) {
+          bootstrap.Collapse.getOrCreateInstance(c, { toggle: false })[how]();
+        });
+      });
+    });
     document.getElementById('sunrise-posts').innerHTML =
       posts || '<p class="text-muted">No ' + name + 's yet.</p>';
 
