@@ -23,6 +23,31 @@
   try { firstPage = !sessionStorage.getItem('sunHint'); sessionStorage.setItem('sunHint', '1'); } catch (e) {}
   if (firstPage) document.documentElement.classList.add('hint-glow');
 
+  // Glow again when they come back (from another tab or another app), but only after being away
+  // a while, and at most twice. Being away over an hour starts the count again.
+  var AWAY_MS = 60 * 1000, RESET_MS = 60 * 60 * 1000, MAX_REPLAYS = 2, leftAt = 0;
+  function leave() { if (!leftAt) leftAt = Date.now(); }
+  function back() {
+    if (!leftAt) return;
+    var away = Date.now() - leftAt;
+    leftAt = 0;
+    if (away < AWAY_MS) return;
+    var n = 0;
+    try {
+      n = away > RESET_MS ? 0 : +sessionStorage.getItem('sunHintReplays') || 0;
+      sessionStorage.setItem('sunHintReplays', n + 1);
+    } catch (e) {}
+    if (n >= MAX_REPLAYS) return;
+    var root = document.documentElement;
+    root.classList.remove('hint-glow');
+    void root.offsetWidth;                 // restart the animation
+    root.classList.add('hint-glow');
+  }
+  // Switching tabs hides the page; switching to another app only takes focus away from the window
+  document.addEventListener('visibilitychange', function () { if (document.hidden) leave(); else back(); });
+  window.addEventListener('blur', leave);
+  window.addEventListener('focus', back);
+
   // If they haven't chosen, follow the device when it changes (e.g. at sunset)
   systemDark.addEventListener('change', function () { if (!saved()) apply(current()); });
 
