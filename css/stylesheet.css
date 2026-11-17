@@ -250,6 +250,18 @@ hr { opacity: 0.1; }
 /* Hovering "sunrises" / "sunsets" in the bio lights up the sun / moon in the navbar */
 body:has(.hint-sun:hover) .theme-combo .sun-link,
 body:has(.hint-moon:hover) .theme-combo .moon-link { color: #fff; opacity: 1; }
+/* Hint that the sun / moon are clickable: dotted underline on the bio words, and on the homepage
+   the sun then the moon glow once when the page loads */
+.hint-sun, .hint-moon { text-decoration: underline dotted; text-decoration-color: rgba(128, 128, 128, .7);
+                        text-underline-offset: .2em; text-decoration-thickness: 1.5px; }
+@keyframes hint-glow {
+  0%, 100% { }
+  45%, 55% { color: #fff; opacity: 1; filter: drop-shadow(0 0 4px rgba(255, 255, 255, .9)); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  body:has(.hint-sun) .theme-combo .sun-link  { animation: hint-glow 1.2s ease-in-out .6s 1; }
+  body:has(.hint-moon) .theme-combo .moon-link { animation: hint-glow 1.2s ease-in-out 1.5s 1; }
+}
 /* The side you're on is bright, the other side dims */
 [data-bs-theme="dark"] .theme-combo .sun-link { opacity: .4; }
 :root:not([data-bs-theme="dark"]) .theme-combo .moon-link { opacity: .4; }

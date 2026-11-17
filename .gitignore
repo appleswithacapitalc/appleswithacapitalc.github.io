@@ -16,3 +16,6 @@ files/sunsets/*/**/*.png
 media_metadata.json
 # Original photos/videos (full size, with GPS): compress_media.sh moves them here; never pushed
 /originals/
+
+# Mac Finder files
+.DS_Store
