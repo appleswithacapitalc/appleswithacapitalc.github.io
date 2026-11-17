@@ -27,8 +27,8 @@
 
     <!-- Custom styles for this template -->
 
-    <link href="css/stylesheet.css?v=cfa5596d" rel="stylesheet" />
-    <link href="css/main.css?v=2f7d5697" rel="stylesheet">
+    <link href="css/stylesheet.css?v=c3825b7d" rel="stylesheet" />
+    <link href="css/main.css?v=017e0d57" rel="stylesheet">
   </head>
 
   <body>
@@ -79,11 +79,34 @@
             
             <h2 id='bio'> Bio</h2>
             
-            <div class="row">
-                <div class="col-md-5">
-                    <img src="files/portrait/2025_mian_banff.jpg" class="img-fluid" alt="Mian Wei at Moraine Lake">
+            <div class="row" id="bio-row">
+                <div class="col-md-5" id="bio-photo-col">
+                    <!-- Bio photo: picked at random from files/portrait/portraits.js (edit that file to add photos) -->
+                    <figure class="bio-photo">
+                      <img id="bio-img" class="img-fluid" alt="Mian Wei at Moraine Lake">
+                      <figcaption id="bio-caption">2025: Moraine Lake, Alberta</figcaption>
+                      <noscript><img src="files/portrait/2025_mian_banff.jpg" class="img-fluid" alt="Mian Wei at Moraine Lake"></noscript>
+                    </figure>
+                    <script src="files/portrait/portraits.js?v=2865f8ad"></script>
+                    <script>
+                      (function () {
+                        var list = (typeof PORTRAITS !== 'undefined' && PORTRAITS.length) ? PORTRAITS
+                                 : [{ photo: '2025_mian_banff.jpg', caption: '2025: Moraine Lake, Alberta' }];
+                        // Usually the "default" photo; sometimes (PORTRAIT_OTHER_CHANCE) one of the others
+                        var chance = typeof PORTRAIT_OTHER_CHANCE === 'number' ? PORTRAIT_OTHER_CHANCE : 0.2;
+                        var main = list.filter(function (x) { return x['default']; })[0] || list[0];
+                        var others = list.filter(function (x) { return x !== main; });
+                        var p = (others.length && Math.random() < chance)
+                              ? others[Math.floor(Math.random() * others.length)] : main;
+                        var img = document.getElementById('bio-img'), cap = document.getElementById('bio-caption');
+                        img.src = 'files/portrait/' + p.photo;
+                        img.alt = 'Mian Wei' + (p.caption ? ' at ' + p.caption.replace(/^\d{4}: /, '') : '');
+                        cap.textContent = p.caption || '';
+                        cap.hidden = !p.caption;
+                      })();
+                    </script>
                 </div>
-                <div class="col-md-7">
+                <div class="col-md-7" id="bio-text-col">
 
                     <p class="justified">If you find yourself reading this, you're in for a <a href="inner/treats.html">treat</a>. Hi, I'm Mian Wei 
                       (first name pronounced me-anne or mayan, either works for me and last name pronounced way). I'm currently a 
@@ -91,7 +114,7 @@
                         Srinivasa Narasimhan</a> and <a href="https://www.cs.cmu.edu/~igkioule/"> Ioannis Gkioulekas</a>. 
                         I obtained my PhD at the University of Toronto working under <a href="https://www.cs.toronto.edu/~kyros/"> 
                           Kyros Kutulakos</a>. I've never done any course on web dev, so pardon my janky-looking website. 
-                          I study computational imaging/cameras, which I describe
+                          I study computational imaging/<wbr>cameras, which I describe
                           as "the pursuit of imaging techniques that expand the capabilities of cameras to facilitate scientific understanding". My pre-COVID interest 
                           lied in understanding how active illumination can improve or augment computer vision 
                           algorithms of the past. Post-COVID during my PhD, I moved on to thinking about single photon imaging... a lot, which led to some success and lots of fun, 
@@ -100,9 +123,88 @@
                     <p class="justified">Outside of Computer Science, I enjoy hiking, travelling, canoeing, kayaking, pretty much all forms of outdoor activities. Lately, I have been obsessed with walking, 
                       which turns out to be a much less trivial activity than I had initially thought. Perhaps I'll write about my walking escapades someday. One of my goals since moving to Pittsburgh is to cross all 446 bridges that the city has to offer before I leave. I've also set a challenge for myself to see a good number of <span class="hint-sun">sunrises</span> and <span class="hint-moon">sunsets</span>. Sometimes, I try to make puns and most of the time they're not good. </p>
                     </p>
-                    
+
                 </div>
             </div>
+            <script>
+              // Fits the bio photo to the text.
+              //  - Wide screens (1200px+), side by side: choose the photo's width so its height matches the text.
+              //    A wider photo is taller and leaves the text less room (so the text gets taller too); this
+              //    finds the balance point.
+              //  - Medium screens (768-1199px), text wraps under the photo (css/main.css): size the photo so its
+              //    bottom lines up with the bottom of a line of text, so there's no empty strip under it.
+              //  - Phones: photo above the text, untouched.
+              // Redone when the window is resized.
+              (function () {
+                var MIN = 0.25, MAX = 0.55;   // wide screens: the photo column stays between 25% and 55% of the width
+                var photoCol = document.getElementById('bio-photo-col'), textCol = document.getElementById('bio-text-col');
+                var img = document.getElementById('bio-img');
+
+                function textHeight() {
+                  var ps = textCol.querySelectorAll('p');
+                  if (!ps.length) return 0;
+                  return ps[ps.length - 1].getBoundingClientRect().bottom - ps[0].getBoundingClientRect().top;
+                }
+                function setShare(f) {
+                  photoCol.style.width = (f * 100) + '%';
+                  textCol.style.width = (100 - f * 100) + '%';
+                }
+                function matchHeights() {
+                  var lo = MIN, hi = MAX;
+                  for (var i = 0; i < 14; i++) {                         // halve the gap each time: ~0.002% precision
+                    var mid = (lo + hi) / 2;
+                    setShare(mid);
+                    if (img.getBoundingClientRect().height < textHeight()) lo = mid; else hi = mid;
+                  }
+                  setShare((lo + hi) / 2);
+                }
+                // Where each line of text ends, measured from the top of the photo
+                function lineBottoms() {
+                  var top = img.getBoundingClientRect().top, out = [];
+                  textCol.querySelectorAll('p').forEach(function (p) {
+                    var r = document.createRange();
+                    r.selectNodeContents(p);
+                    [].forEach.call(r.getClientRects(), function (rect) {
+                      var b = Math.round(rect.bottom - top);
+                      if (rect.width && out.indexOf(b) < 0) out.push(b);
+                    });
+                  });
+                  return out.sort(function (a, b) { return a - b; });
+                }
+                function snapToLines() {
+                  var pad = photoCol.offsetWidth - photoCol.clientWidth +   // borders (none) +
+                            parseFloat(getComputedStyle(photoCol).paddingLeft) + parseFloat(getComputedStyle(photoCol).paddingRight);
+                  var ratio = img.naturalWidth / img.naturalHeight;
+                  var want = photoCol.offsetWidth;                        // start from the CSS width (45%)
+                  for (var i = 0; i < 4; i++) {                           // lines move a little as the photo changes size
+                    var h = (want - pad) / ratio, best = null;
+                    lineBottoms().forEach(function (b) { if (best === null || Math.abs(b - h) < Math.abs(best - h)) best = b; });
+                    if (best === null) return;
+                    var next = best * ratio + pad;
+                    photoCol.style.width = next + 'px';
+                    if (Math.abs(next - want) < 0.5) break;
+                    want = next;
+                  }
+                }
+                function fit() {
+                  photoCol.style.width = textCol.style.width = '';
+                  if (!img.naturalWidth || window.innerWidth < 768) return;   // phones, or photo not loaded yet
+                  if (window.innerWidth >= 1200) matchHeights(); else snapToLines();
+                }
+
+                var queued = false;
+                function refit() {
+                  if (queued) return;
+                  queued = true;
+                  requestAnimationFrame(function () { queued = false; fit(); });
+                }
+                img.addEventListener('load', fit);
+                window.addEventListener('load', fit);                   // everything (photo, fonts) has arrived
+                window.addEventListener('resize', refit);
+                if (document.fonts) document.fonts.ready.then(fit);     // re-measure once Ageo has loaded
+                if (img.complete) fit();
+              })();
+            </script>
 
             <hr class="featurette-divider">
             

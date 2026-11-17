@@ -48,7 +48,7 @@
 /* Sidebar links stay on solid white so they're easy to read */
 #sunrise-dates .list-group-item:not(.active) { background-color: var(--bs-body-bg); }
 /* Same text style as the bio on the homepage */
-.justified { text-align: justify; text-justify: inter-word; hyphens: auto; }
+.justified { text-align: justify; text-justify: inter-word; hyphens: manual; text-wrap: pretty; }
 /* Photos and videos in a post: shown side by side at a modest size, centred.
    To make them bigger or smaller, change --media-height. Click a photo to see it full size. */
 .sunrise-media { --media-height: min(55vh, 380px);

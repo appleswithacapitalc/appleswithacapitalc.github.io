@@ -166,9 +166,28 @@ video {
 .justified {
   text-align: justify;        /* flush left and right */
   text-justify: inter-word;   /* better spacing */
-  hyphens: auto;  
+  hyphens: manual;            /* don't split words with a hyphen at the end of a line */
+  text-wrap: pretty;          /* choose line breaks for the whole paragraph (like LaTeX), where supported */
 }
 /* Leave room below the fixed navbar when jumping to #bio (matches inner pages) */
 #bio {
     scroll-margin-top: 40px;
+}
+/* Bio photo (picked at random, see files/portrait/portraits.js) with its place in the bottom-right corner */
+.bio-photo { position: relative; display: inline-block; max-width: 100%; margin: 0 0 1rem; }
+.bio-photo img { display: block; }
+.bio-photo figcaption {
+    position: absolute; right: .5rem; bottom: .5rem;
+    max-width: calc(100% - 1rem); text-align: right; text-wrap: balance;   /* long captions wrap evenly instead of spilling off */
+    font-size: .75rem; line-height: 1.2; padding: .25rem .6rem; border-radius: 1rem;
+    background: rgba(0, 0, 0, .55); color: #fff;
+}
+/* Medium screens (tablets, small windows): the bio text wraps under the photo once it runs past it.
+   Wider screens match the photo's height to the text instead (script in mera.html); phones stack. */
+@media (min-width: 768px) and (max-width: 1199.98px) {
+    #bio-row { display: block; }
+    #bio-row::after { content: ""; display: table; clear: both; }
+    #bio-photo-col { float: left; width: 45%; }
+    #bio-photo-col .bio-photo { display: block; margin-bottom: 0; }   /* block: no extra space under the photo */
+    #bio-text-col { width: auto; }
 }

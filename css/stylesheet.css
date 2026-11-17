@@ -292,7 +292,7 @@ body:has(.hint-moon:hover) .theme-combo .moon-link { color: #fff; opacity: 1; }
     .theme-combo .form-check-input { width: calc(var(--switch) * 1.35em); }
 }
 
-.justified { text-align: justify; text-justify: inter-word; hyphens: auto; }
+.justified { text-align: justify; text-justify: inter-word; hyphens: manual; text-wrap: pretty; }
 
 /* Carousels (Pubs, Treats): keep white arrows and dots in dark mode.
    Bootstrap turns them black in dark mode, which disappears on photos. */
