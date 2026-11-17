@@ -18,10 +18,42 @@
 const SUNRISES = [
 
   {
+    "date": "2026-11-17",
+    "title": "",
+    "location": "Pittsburgh, Pennsylvania",
+    "video": "2026/11-Nov/2026-11-17.mp4",
+    "text": ""
+  },
+
+  {
+    "date": "2026-11-16",
+    "title": "",
+    "location": "Pittsburgh, Pennsylvania",
+    "video": "2026/11-Nov/2026-11-16.mp4",
+    "text": ""
+  },
+
+  {
+    "date": "2026-11-13",
+    "title": "",
+    "location": "Cathedral of Learning, Pittsburgh, Pennsylvania",
+    "video": "2026/11-Nov/2026-11-13.mp4",
+    "text": ""
+  },
+
+  {
+    "date": "2026-11-11",
+    "title": "",
+    "location": "Pittsburgh, Pennsylvania",
+    "video": "2026/11-Nov/2026-11-11.mp4",
+    "text": ""
+  },
+
+  {
     "date": "2026-11-10",
     "title": "",
     "location": "Pittsburgh, Pennsylvania",
-    "video": "2026/11-Nov/2026-11-10.mp4",
+    "photo": "2026/11-Nov/2026-11-10.HEIC",
     "text": ""
   },
 
@@ -219,10 +251,34 @@ const SUNRISES = [
   },
 
   {
+    "date": "2018-07-01",
+    "title": "",
+    "location": "Machu Picchu, Peru",
+    "photo": "pre2026/2018-07-01.HEIC",
+    "text": ""
+  },
+
+  {
+    "date": "2016-06-02",
+    "title": "",
+    "location": "Luang Prabang, Laos",
+    "photo": "pre2026/2016-06-02.jpg",
+    "text": ""
+  },
+
+  {
+    "date": "2016-05-14",
+    "title": "",
+    "location": "Pai Canyon, Pai, Thailand",
+    "photo": "pre2026/2016-05-14.jpg",
+    "text": ""
+  },
+
+  {
     "date": "2016-04-28",
     "title": "",
     "location": "Angkor Wat, Siem Reap, Cambodia",
-    "photo": "pre2026/2016-04-28.JPG",
+    "photo": "pre2026/2016-04-28.jpg",
     "text": ""
   },
 
@@ -248,6 +304,6 @@ const SUNRISES = [
     "location": "Somewhere in Belgium",
     "photo": "pre2026/2009-08.jpg",
     "text": ""
-  },
+  }
 
 ];

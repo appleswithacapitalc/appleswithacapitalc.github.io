@@ -534,7 +534,7 @@ const SUNSETS = [
     "date": "2018-06-27",
     "title": "",
     "location": "Cusco, Peru",
-    "photo": "pre2026/2018-06-27.jpeg",
+    "photo": "pre2026/2018-06-27.HEIC",
     "text": ""
   },
 
@@ -555,10 +555,74 @@ const SUNSETS = [
   },
 
   {
+    "date": "2016-06-06",
+    "title": "",
+    "location": "Sirindhorn, Thailand",
+    "photo": "pre2026/2016-06-06.jpg",
+    "text": ""
+  },
+
+  {
+    "date": "2016-06-01",
+    "title": "",
+    "location": "",
+    "photo": "pre2026/2016-06-01.jpg",
+    "text": ""
+  },
+
+  {
+    "date": "2016-05-28",
+    "title": "",
+    "location": "Ha Long Bay, Vietnam",
+    "photo": "pre2026/2016-05-28.jpg",
+    "text": ""
+  },
+
+  {
+    "date": "2016-05-20",
+    "title": "",
+    "location": "Hoi An, Vietnam",
+    "photo": "pre2026/2016-05-20.jpg",
+    "text": ""
+  },
+
+  {
+    "date": "2016-05-13",
+    "title": "",
+    "location": "Pai Canyon, Pai, Thailand",
+    "photo": "pre2026/2016-05-13.jpg",
+    "text": ""
+  },
+
+  {
+    "date": "2016-05-11",
+    "title": "",
+    "location": "Pai Canyon, Pai, Thailand",
+    "photo": "pre2026/2016-05-11.jpg",
+    "text": ""
+  },
+
+  {
+    "date": "2016-05-03",
+    "title": "",
+    "location": "Patong Beach, Phuket, Thailand",
+    "photo": "pre2026/2016-05-03.jpg",
+    "text": ""
+  },
+
+  {
+    "date": "2016-05-01",
+    "title": "",
+    "location": "Lumphini Park, Bangkok, Thailand",
+    "photo": "pre2026/2016-05-01.jpg",
+    "text": ""
+  },
+
+  {
     "date": "2016-04-28",
     "title": "",
     "location": "Phnom Bakheng, Siem Reap, Cambodia",
-    "photo": "pre2026/2016-04-28.JPG",
+    "photo": "pre2026/2016-04-28.jpg",
     "text": ""
   },
 
@@ -584,6 +648,6 @@ const SUNSETS = [
     "location": "An airport in Belgium or the Netherlands",
     "photo": "pre2026/2009-08.jpg",
     "text": ""
-  },
+  }
 
 ];
